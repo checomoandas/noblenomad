@@ -1,0 +1,1054 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Buenos Aires - Noble Nomad</name>
+    <description>Essential info for Digital Nomads and Travellers</description>
+    <Style id="icon-1504-0288D1-nodesc-normal">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1504-0288D1-nodesc-highlight">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1504-0288D1-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1504-0288D1-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1504-0288D1-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1517-E65100-normal">
+      <IconStyle>
+        <color>ff0051e6</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1517-E65100-highlight">
+      <IconStyle>
+        <color>ff0051e6</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1517-E65100">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1517-E65100-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1517-E65100-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1517-F9A825-normal">
+      <IconStyle>
+        <color>ff25a8f9</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1517-F9A825-highlight">
+      <IconStyle>
+        <color>ff25a8f9</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1517-F9A825">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1517-F9A825-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1517-F9A825-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1517-FBC02D-nodesc-normal">
+      <IconStyle>
+        <color>ff2dc0fb</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1517-FBC02D-nodesc-highlight">
+      <IconStyle>
+        <color>ff2dc0fb</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1517-FBC02D-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1517-FBC02D-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1517-FBC02D-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1589-097138-normal">
+      <IconStyle>
+        <color>ff387109</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1589-097138-highlight">
+      <IconStyle>
+        <color>ff387109</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1589-097138">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1589-097138-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1589-097138-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1589-7CB342-normal">
+      <IconStyle>
+        <color>ff42b37c</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1589-7CB342-highlight">
+      <IconStyle>
+        <color>ff42b37c</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1589-7CB342">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1589-7CB342-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1589-7CB342-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1589-7CB342-nodesc-normal">
+      <IconStyle>
+        <color>ff42b37c</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1589-7CB342-nodesc-highlight">
+      <IconStyle>
+        <color>ff42b37c</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1589-7CB342-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1589-7CB342-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1589-7CB342-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1589-AFB42B-nodesc-normal">
+      <IconStyle>
+        <color>ff2bb4af</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1589-AFB42B-nodesc-highlight">
+      <IconStyle>
+        <color>ff2bb4af</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1589-AFB42B-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1589-AFB42B-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1589-AFB42B-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1637-E65100-normal">
+      <IconStyle>
+        <color>ff0051e6</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1637-E65100-highlight">
+      <IconStyle>
+        <color>ff0051e6</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1637-E65100">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1637-E65100-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1637-E65100-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1707-7CB342-normal">
+      <IconStyle>
+        <color>ff42b37c</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1707-7CB342-highlight">
+      <IconStyle>
+        <color>ff42b37c</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1707-7CB342">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1707-7CB342-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1707-7CB342-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1845-0097A7-nodesc-normal">
+      <IconStyle>
+        <color>ffa79700</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1845-0097A7-nodesc-highlight">
+      <IconStyle>
+        <color>ffa79700</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1845-0097A7-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1845-0097A7-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1845-0097A7-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1845-0288D1-nodesc-normal">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1845-0288D1-nodesc-highlight">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1845-0288D1-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1845-0288D1-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1845-0288D1-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1845-1A237E-nodesc-normal">
+      <IconStyle>
+        <color>ff7e231a</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1845-1A237E-nodesc-highlight">
+      <IconStyle>
+        <color>ff7e231a</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1845-1A237E-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1845-1A237E-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1845-1A237E-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-0F9D58-5621-normal">
+      <LineStyle>
+        <color>ff589d0f</color>
+        <width>5.621</width>
+      </LineStyle>
+    </Style>
+    <Style id="line-0F9D58-5621-highlight">
+      <LineStyle>
+        <color>ff589d0f</color>
+        <width>8.4315</width>
+      </LineStyle>
+    </Style>
+    <StyleMap id="line-0F9D58-5621">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-0F9D58-5621-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-0F9D58-5621-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-558B2F-1200-77-nodesc-normal">
+      <LineStyle>
+        <color>ff2f8b55</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d2f8b55</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="poly-558B2F-1200-77-nodesc-highlight">
+      <LineStyle>
+        <color>ff2f8b55</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d2f8b55</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="poly-558B2F-1200-77-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-558B2F-1200-77-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-558B2F-1200-77-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-558B2F-1200-92-normal">
+      <LineStyle>
+        <color>ff2f8b55</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>5c2f8b55</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-558B2F-1200-92-highlight">
+      <LineStyle>
+        <color>ff2f8b55</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>5c2f8b55</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-558B2F-1200-92">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-558B2F-1200-92-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-558B2F-1200-92-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-C5E1A5-1200-77-normal">
+      <LineStyle>
+        <color>ffa5e1c5</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4da5e1c5</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-C5E1A5-1200-77-highlight">
+      <LineStyle>
+        <color>ffa5e1c5</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4da5e1c5</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-C5E1A5-1200-77">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-C5E1A5-1200-77-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-C5E1A5-1200-77-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-C5E1A5-1200-77-nodesc-normal">
+      <LineStyle>
+        <color>ffa5e1c5</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4da5e1c5</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="poly-C5E1A5-1200-77-nodesc-highlight">
+      <LineStyle>
+        <color>ffa5e1c5</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4da5e1c5</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="poly-C5E1A5-1200-77-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-C5E1A5-1200-77-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-C5E1A5-1200-77-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Folder>
+      <name>Social Events</name>
+      <Placemark>
+        <name>Mundo Lingo - Wednesday Language Exchange</name>
+        <description>9PM - 3AM - Easily mingle to meet nomads and locals. Flag stickers handed out of the languages you speak to encourage socializing. </description>
+        <styleUrl>#icon-1517-E65100</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4264211,-34.5938957,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Mundo Lingo - Friday Language Event</name>
+        <description>Easily mingle to meet nomads and locals. Flag stickers handed out of the languages you speak to encourage socializing. </description>
+        <styleUrl>#icon-1517-E65100</styleUrl>
+        <Point>
+          <coordinates>
+            -58.451359,-34.5834406,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Mundo Lingo - Thursday night language exchange</name>
+        <description>From 9PM to 3AM - International Language exchange at Trova Wine Bar</description>
+        <styleUrl>#icon-1517-E65100</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4394277,-34.5815492,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bomba de Tiempo - Monday 8PM</name>
+        <description><![CDATA[Drum show every Monday  <br>In advance $4000 + service charge | Day of show $5500 + service charge | Door $6000 + service charge<br>https://www.labombadetiempo.com/]]></description>
+        <styleUrl>#icon-1637-E65100</styleUrl>
+        <Point>
+          <coordinates>
+            -58.410392,-34.6064294,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Spanglish - Saturday 7PM</name>
+        <description><![CDATA[7PM-9PM ($3500 ARG) for English and Spanish language exchange. A much smaller crowd than Mundo Lingo but far more structured where small groups are rotated for 2 hours.  (updated: 1-'24)]]></description>
+        <styleUrl>#icon-1517-F9A825</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4329988,-34.5869616,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Mundo Lingo - Tuesday</name>
+        <styleUrl>#icon-1517-FBC02D-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -58.3648199,-34.6203351,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Spanglish Thursday </name>
+        <description><![CDATA[7PM-9PM ($3500 ARG) English and Spanish language exchange for locals and foreigners.  A much smaller crowd than Mundo Lingo but more structured where small groups are rotated for 2 hours in a speed dating type format (updated: 1-'24)  ]]></description>
+        <styleUrl>#icon-1517-F9A825</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4320274,-34.5872593,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Walkable streets</name>
+      <Placemark>
+        <name>Pleasant Walk</name>
+        <description>Lined with cafes and restaurants</description>
+        <styleUrl>#line-0F9D58-5621</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -58.4414154,-34.5817805,0
+            -58.4365552,-34.5776729,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Sports Recreation</name>
+      <Placemark>
+        <name>Tennis and Padel Courts</name>
+        <description>Indoor clay court conditions are decent, though a tad tight on space especially for doubles.  </description>
+        <styleUrl>#icon-1707-7CB342</styleUrl>
+        <Point>
+          <coordinates>
+            -58.428656,-34.586912,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Gym</name>
+        <description>Well maintained facilities x/day, x/week, x/month </description>
+        <styleUrl>#icon-1589-097138</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4282489,-34.5868376,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Megatlon Almagro</name>
+        <styleUrl>#icon-1589-7CB342-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4186039,-34.6022365,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Fitness KING 2</name>
+        <styleUrl>#icon-1589-7CB342-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4229218,-34.5980483,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Megatlon Villa Crespo</name>
+        <styleUrl>#icon-1589-7CB342-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4448927,-34.5954257,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Megatlon Distrito Arcos</name>
+        <styleUrl>#icon-1589-7CB342-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4260745,-34.5793847,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Megatlon Alto Palermo</name>
+        <styleUrl>#icon-1589-AFB42B-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4106303,-34.5877503,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Mr. GARAGE GYM</name>
+        <description>x/day, x/week, x/month</description>
+        <styleUrl>#icon-1589-7CB342</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4333425,-34.5797298,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Palermo Hollywood
+</name>
+        <styleUrl>#poly-558B2F-1200-77-nodesc</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                -58.4385742,-34.588323,0
+                -58.4381879,-34.587687,0
+                -58.4292186,-34.580762,0
+                -58.4269441,-34.5782533,0
+                -58.4356559,-34.5752498,0
+                -58.4369434,-34.5761685,0
+                -58.4390891,-34.5762392,0
+                -58.4450544,-34.581398,0
+                -58.4462989,-34.5836239,0
+                -58.4444106,-34.5845779,0
+                -58.4385742,-34.588323,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Palermo - Most walkable areas to stay</name>
+      <Placemark>
+        <name>Las Canitas
+</name>
+        <styleUrl>#poly-C5E1A5-1200-77-nodesc</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                -58.4316825,-34.574288,0
+                -58.4244728,-34.571037,0
+                -58.4364461,-34.5637218,0
+                -58.4394502,-34.5661249,0
+                -58.4316825,-34.574288,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Palermo Viejo
+</name>
+        <styleUrl>#poly-C5E1A5-1200-77-nodesc</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                -58.4257231,-34.5779293,0
+                -58.4095011,-34.5886703,0
+                -58.4055529,-34.5832293,0
+                -58.4043512,-34.580756,0
+                -58.4064541,-34.5789893,0
+                -58.4152088,-34.5750671,0
+                -58.4226332,-34.5716748,0
+                -58.4257231,-34.5779293,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Palermo/Barrio Norte
+</name>
+        <description>Still steps from the action but slightly less aesthetically pleasing than parts of Palermo Soho and Hollywood</description>
+        <styleUrl>#poly-C5E1A5-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                -58.4294193,-34.5943065,0
+                -58.422982,-34.5974152,0
+                -58.412339,-34.5975566,0
+                -58.4121673,-34.5962848,0
+                -58.4090774,-34.5899257,0
+                -58.415858,-34.5854034,0
+                -58.4294193,-34.5943065,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Ezeiza International Airport</name>
+        <styleUrl>#icon-1504-0288D1-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -58.5372696,-34.8165256,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Aeroparque Internacional Jorge Newbery</name>
+        <styleUrl>#icon-1504-0288D1-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4156511,-34.5590184,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Coworking</name>
+      <Placemark>
+        <name>Cowork Gold Station</name>
+        <styleUrl>#icon-1845-0288D1-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4387366,-34.5947493,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>IndaWork Coworking</name>
+        <styleUrl>#icon-1845-1A237E-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4288255,-34.5945134,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[Working & Co]]></name>
+        <styleUrl>#icon-1845-0288D1-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4226356,-34.5886097,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>ACO Workspace</name>
+        <styleUrl>#icon-1845-1A237E-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4296313,-34.5942142,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>La Maquinita Co. Villa Crespo</name>
+        <styleUrl>#icon-1845-0288D1-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4353065,-34.5960363,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>AreaTres El Salvador</name>
+        <styleUrl>#icon-1845-1A237E-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4322028,-34.5860057,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>HIT Cañitas</name>
+        <styleUrl>#icon-1845-0097A7-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -58.437146,-34.5684559,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>UN_LUGAR</name>
+        <styleUrl>#icon-1845-0288D1-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4462542,-34.5706271,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Manawa Coworking Creativo</name>
+        <styleUrl>#icon-1845-0288D1-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4271995,-34.5863983,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>URBAN STATION Palermo Hollywood</name>
+        <styleUrl>#icon-1845-0288D1-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4361069,-34.5823722,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Huerta Coworking</name>
+        <styleUrl>#icon-1845-0288D1-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -58.4394533,-34.578221,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Untitled layer</name>
+      <Placemark>
+        <name>Palermo Soho
+</name>
+        <description><![CDATA[Palermo Soho<br>One of the most desirable and walk-able areas for digital nomads who want easy access to the trendiest bars, restaurants and international social events.]]></description>
+        <styleUrl>#poly-558B2F-1200-92</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                -58.4298724,-34.5939684,0
+                -58.4159679,-34.5849946,0
+                -58.4260959,-34.57814,0
+                -58.4285421,-34.5809667,0
+                -58.4376399,-34.5876445,0
+                -58.4380049,-34.588669,0
+                -58.4298724,-34.5939684,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+    </Folder>
+  </Document>
+</kml>
