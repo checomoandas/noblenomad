@@ -652,16 +652,6 @@
     <Folder>
       <name>Social Events</name>
       <Placemark>
-        <name>Mundo Lingo - Wednesday Language Exchange</name>
-        <description>9PM - 3AM - Easily mingle to meet nomads and locals. Flag stickers handed out of the languages you speak to encourage socializing. </description>
-        <styleUrl>#icon-1517-E65100</styleUrl>
-        <Point>
-          <coordinates>
-            -58.4264211,-34.5938957,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
         <name>Mundo Lingo - Friday Language Event</name>
         <description>Easily mingle to meet nomads and locals. Flag stickers handed out of the languages you speak to encourage socializing. </description>
         <styleUrl>#icon-1517-E65100</styleUrl>
