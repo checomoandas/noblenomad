@@ -2,23 +2,45 @@
 let map, directionsService, directionsRenderer, markers = [], activeFilters = { category: [], category2: [], category3: [], complex: [] }, currentInfowindow;
 let kmlLayers = [null, null, null], kmlUrls = ['https://raw.githubusercontent.com/checomoandas/noblenomad/main/Safest%20and%20most%20walkable.kml', 'https://raw.githubusercontent.com/checomoandas/noblenomad/main/Safe%20but%20less%20walkable.kml', 'https://raw.githubusercontent.com/checomoandas/noblenomad/main/Feels%20sketchy%20at%20night.kml'];
 
+function loadGoogleMapsScript() {
+    const script = document.createElement('script');
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCAK_oC-2iPESygmTO20tMTBJ5Eyu5_3Rw&libraries=places&callback=onGoogleMapsScriptLoad';
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+}
+
+function onGoogleMapsScriptLoad() {
+    document.addEventListener('DOMContentLoaded', initMap);
+    initKMLLayers();
+}
+
+loadGoogleMapsScript();
+
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), { center: { lat: -34.58, lng: -58.42 }, zoom: 13, mapTypeControl: false });
     directionsService = new google.maps.DirectionsService();
     directionsRenderer = new google.maps.DirectionsRenderer();
     directionsRenderer.setMap(map);
     new google.maps.places.Autocomplete(document.getElementById('startLocation'));
-    fetch('https://raw.githubusercontent.com/checomoandas/noblenomad/main/BsAsPins.csv').then(response => response.text()).then(csvData => {
+
+    fetch('https://raw.githubusercontent.com/checomoandas/noblenomad/main/BsAsPins.csv')
+    .then(response => response.text())
+    .then(csvData => {
         csvData.split('\n').slice(1).forEach(line => {
             const columns = line.split(',');
-            let data = { name: columns[0], lat: parseFloat(columns[1]), lng: parseFloat(columns[2]), popup_header: columns[3], popupimage_url: columns[4], description: columns[5], icon_url: columns[6], category: columns[7], category2: columns[8], category3: columns[9] };
+            let data = {
+                name: columns[0], lat: parseFloat(columns[1]), lng: parseFloat(columns[2]), popup_header: columns[3], popupimage_url: columns[4], description: columns[5], icon_url: columns[6], category: columns[7], category2: columns[8], category3: columns[9]
+            };
             if (!isNaN(data.lat) && !isNaN(data.lng)) {
                 createMarker(data);
             }
         });
-    }).catch(error => console.error('Error fetching or parsing CSV data:', error));
+    })
+    .catch(error => console.error('Error fetching or parsing CSV data:', error));
+
     document.querySelectorAll('button[data-category]').forEach(button => {
-        button.addEventListener('click', function () {
+        button.addEventListener('click', function() {
             let categoryType = this.getAttribute('data-category');
             let categoryValues = this.hasAttribute('data-value') ? [this.getAttribute('data-value')] : this.hasAttribute('data-values') ? this.getAttribute('data-values').split(',') : [];
             this.classList.toggle('active');
@@ -27,8 +49,11 @@ function initMap() {
             } else {
                 categoryValues.forEach(value => {
                     let index = activeFilters[categoryType].indexOf(value);
-                    if (index > -1) activeFilters[categoryType].splice(index, 1);
-                    else activeFilters[categoryType].push(value);
+                    if (index > -1) {
+                        activeFilters[categoryType].splice(index, 1);
+                    } else {
+                        activeFilters[categoryType].push(value);
+                    }
                 });
             }
             applyFilters();
@@ -98,7 +123,7 @@ function calculateAndDisplayRoute() {
         origin: start,
         destination: end,
         travelMode: travelMode
-    }, function (response, status) {
+    }, function(response, status) {
         if (status === 'OK') {
             directionsRenderer.setDirections(response);
             displayRouteDetails(response);
@@ -148,16 +173,4 @@ function applyFilters() {
         marker.setMap(isVisible ? map : null);
     });
 }
-
-
-function loadGoogleMapsScript() {
-    const script = document.createElement('script');
-    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCAK_oC-2iPESygmTO20tMTBJ5Eyu5_3Rw&libraries=places&callback=initMap';
-    script.async = true;
-    script.defer = true;
-    script.onload = initKMLLayers;
-    document.head.appendChild(script);
-}
-
-loadGoogleMapsScript();
 </script>
