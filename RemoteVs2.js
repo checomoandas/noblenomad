@@ -186,4 +186,3 @@ function applyFilters() {
         marker.setMap(isVisible ? map : null);
     });
 }
-}
