@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Feels sketchy at night</name>
+    <Style id="poly-FFCC80-1200-64-normal">
+      <LineStyle>
+        <color>ff80ccff</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4080ccff</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-FFCC80-1200-64-highlight">
+      <LineStyle>
+        <color>ff80ccff</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4080ccff</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-FFCC80-1200-64">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-FFCC80-1200-64-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-FFCC80-1200-64-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Placemark>
+      <name>San Telmo
+</name>
+      <description>A lot of backpackers stay here due to its cheapness and it is fine during the day but feels much sketchier than Palermo at night with higher numbers of vagrants and junk collectors.</description>
+      <styleUrl>#poly-FFCC80-1200-64</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              -58.3707183,-34.6292689,0
+              -58.3677142,-34.6270089,0
+              -58.3678,-34.6251725,0
+              -58.3635943,-34.6250666,0
+              -58.3656114,-34.6238306,0
+              -58.3659547,-34.6225945,0
+              -58.3664697,-34.6155664,0
+              -58.377456,-34.6162022,0
+              -58.3771127,-34.6234421,0
+              -58.3762973,-34.6262319,0
+              -58.3750527,-34.6255257,0
+              -58.3712762,-34.6253491,0
+              -58.3707183,-34.6292689,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+  </Document>
+</kml>

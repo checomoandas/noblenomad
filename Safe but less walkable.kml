@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Safe but less walkable</name>
+    <Style id="poly-E6EE9C-1200-77-normal">
+      <LineStyle>
+        <color>ff9ceee6</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d9ceee6</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-E6EE9C-1200-77-highlight">
+      <LineStyle>
+        <color>ff9ceee6</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d9ceee6</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-E6EE9C-1200-77">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-E6EE9C-1200-77-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-E6EE9C-1200-77-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Placemark>
+      <name>Recoleta</name>
+      <description>A safe and nice area but more of a older money midtown feel with higher buildings and less walkable than Palermo, which has more of a Brooklyn bohemian vibe to it.</description>
+      <styleUrl>#poly-E6EE9C-1200-77</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              -58.4159607,-34.5978317,0
+              -58.404674,-34.5979907,0
+              -58.4018631,-34.5994037,0
+              -58.3987088,-34.599757,0
+              -58.3868427,-34.5992801,0
+              -58.3875722,-34.5927976,0
+              -58.3879585,-34.5916671,0
+              -58.3838601,-34.5876572,0
+              -58.3906192,-34.584124,0
+              -58.3981509,-34.5806261,0
+              -58.400568,-34.5844915,0
+              -58.4020057,-34.5834138,0
+              -58.4059324,-34.5833785,0
+              -58.4067693,-34.5850391,0
+              -58.4145477,-34.5939598,0
+              -58.4159607,-34.5978317,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>Puerto Madero
+</name>
+      <description>Upscale area but a somewhat long taxi ride from the walkable cafe lined streets of Palermo</description>
+      <styleUrl>#poly-E6EE9C-1200-77</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              -58.3623821,-34.623012,0
+              -58.3540566,-34.6220938,0
+              -58.3546574,-34.6199749,0
+              -58.3513958,-34.6191979,0
+              -58.3501942,-34.6180677,0
+              -58.3503659,-34.6168669,0
+              -58.3521683,-34.6160899,0
+              -58.3567173,-34.6163725,0
+              -58.3631546,-34.598005,0
+              -58.3655579,-34.5982876,0
+              -58.3623821,-34.623012,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+  </Document>
+</kml>

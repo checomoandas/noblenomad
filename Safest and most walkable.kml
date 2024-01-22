@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Safest and most walkable</name>
+    <Style id="poly-558B2F-1200-77-nodesc-normal">
+      <LineStyle>
+        <color>ff2f8b55</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d2f8b55</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="poly-558B2F-1200-77-nodesc-highlight">
+      <LineStyle>
+        <color>ff2f8b55</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d2f8b55</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="poly-558B2F-1200-77-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-558B2F-1200-77-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-558B2F-1200-77-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-558B2F-1200-92-normal">
+      <LineStyle>
+        <color>ff2f8b55</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>5c2f8b55</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-558B2F-1200-92-highlight">
+      <LineStyle>
+        <color>ff2f8b55</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>5c2f8b55</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-558B2F-1200-92">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-558B2F-1200-92-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-558B2F-1200-92-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-C5E1A5-1200-77-normal">
+      <LineStyle>
+        <color>ffa5e1c5</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4da5e1c5</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-C5E1A5-1200-77-highlight">
+      <LineStyle>
+        <color>ffa5e1c5</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4da5e1c5</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-C5E1A5-1200-77">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-C5E1A5-1200-77-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-C5E1A5-1200-77-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Placemark>
+      <name>Las Canitas
+</name>
+      <description>Safe and walkable but a short taxi ride to the Palermo Soho/Hollywood where most of the action is.</description>
+      <styleUrl>#poly-C5E1A5-1200-77</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              -58.4316825,-34.574288,0
+              -58.4244728,-34.571037,0
+              -58.4364461,-34.5637218,0
+              -58.4394502,-34.5661249,0
+              -58.4316825,-34.574288,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>Palermo Hollywood
+</name>
+      <styleUrl>#poly-558B2F-1200-77-nodesc</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              -58.4385742,-34.588323,0
+              -58.4381879,-34.587687,0
+              -58.4292186,-34.580762,0
+              -58.4269441,-34.5782533,0
+              -58.4356559,-34.5752498,0
+              -58.4369434,-34.5761685,0
+              -58.4390891,-34.5762392,0
+              -58.4450544,-34.581398,0
+              -58.4462989,-34.5836239,0
+              -58.4444106,-34.5845779,0
+              -58.4385742,-34.588323,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>Palermo Soho
+</name>
+      <description><![CDATA[Palermo Soho<br>One of the most desirable and walk-able areas for digital nomads who want easy access to the trendiest bars, restaurants and international social events.]]></description>
+      <styleUrl>#poly-558B2F-1200-92</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              -58.4300012,-34.5941981,0
+              -58.4160966,-34.5852243,0
+              -58.4262246,-34.5783697,0
+              -58.4286709,-34.5811964,0
+              -58.4377687,-34.5878742,0
+              -58.4381337,-34.5888987,0
+              -58.4300012,-34.5941981,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>Palermo/Barrio Norte
+</name>
+      <description>Still steps from the action but slightly less aesthetically pleasing than parts of Palermo Soho and Hollywood</description>
+      <styleUrl>#poly-C5E1A5-1200-77</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              -58.4295695,-34.5942358,0
+              -58.4231322,-34.5973445,0
+              -58.4161109,-34.5978317,0
+              -58.4146979,-34.5939598,0
+              -58.4104292,-34.5889011,0
+              -58.4160082,-34.5853327,0
+              -58.4295695,-34.5942358,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>Palermo Viejo
+</name>
+      <description>Safe and walkable with nice parks steps away, but a short taxi ride to the Palermo Soho/Hollywood where most of the action is.</description>
+      <styleUrl>#poly-C5E1A5-1200-77</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              -58.4257231,-34.5779293,0
+              -58.4095011,-34.5886703,0
+              -58.4055529,-34.5832293,0
+              -58.4043512,-34.580756,0
+              -58.4064541,-34.5789893,0
+              -58.4152088,-34.5750671,0
+              -58.4226332,-34.5716748,0
+              -58.4257231,-34.5779293,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+  </Document>
+</kml>
