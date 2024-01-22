@@ -1,19 +1,27 @@
-let kmlLayers = [null, null, null], kmlUrls = ['https://raw.githubusercontent.com/checomoandas/noblenomad/main/Safest%20and%20most%20walkable.kml', 'https://raw.githubusercontent.com/checomoandas/noblenomad/main/Safe%20but%20less%20walkable.kml', 'https://raw.githubusercontent.com/checomoandas/noblenomad/main/Feels%20sketchy%20at%20night.kml'];
+let map, directionsService, directionsRenderer;
+let markers = []; // Initialize markers array
+let kmlLayers = [null, null, null], 
+    kmlUrls = [
+        'https://raw.githubusercontent.com/checomoandas/noblenomad/main/Safest%20and%20most%20walkable.kml', 
+        'https://raw.githubusercontent.com/checomoandas/noblenomad/main/Safe%20but%20less%20walkable.kml', 
+        'https://raw.githubusercontent.com/checomoandas/noblenomad/main/Feels%20sketchy%20at%20night.kml'
+    ];
+let activeFilters = { category: [], category2: [], category3: [], complex: [] }; // Ensure activeFilters is also declared
 
-       function loadGoogleMapsScript() {
-            const script = document.createElement('script');
-            script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCAK_oC-2iPESygmTO20tMTBJ5Eyu5_3Rw&libraries=places&callback=onGoogleMapsScriptLoad';
-            script.async = true;
-            script.defer = true;
-            document.head.appendChild(script);
-        }
+function loadGoogleMapsScript() {
+    const script = document.createElement('script');
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCAK_oC-2iPESygmTO20tMTBJ5Eyu5_3Rw&libraries=places&callback=onGoogleMapsScriptLoad';
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+}
 
-        function onGoogleMapsScriptLoad() {
-            document.addEventListener('DOMContentLoaded', initMap);
-            initKMLLayers();
-        }
+function onGoogleMapsScriptLoad() {
+    document.addEventListener('DOMContentLoaded', initMap);
+    initKMLLayers();
+}
 
-        loadGoogleMapsScript();
+loadGoogleMapsScript();
 
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), { center: { lat: -34.58, lng: -58.42 }, zoom: 13, mapTypeControl: false });
