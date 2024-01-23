@@ -152,7 +152,9 @@
     <Placemark>
       <name>Palermo Soho
 </name>
-      <description><![CDATA[Palermo Soho<br>One of the most desirable and walk-able areas for digital nomads who want easy access to the trendiest bars, restaurants and international social events.]]></description>
+      <description><![CDATA[ <div style="width: 200px; font-size: 12px;">
+      <img src="image_url.jpg" style="width: 100%; max-width: 200px; height: auto;">
+      <p> Palermo Soho<br>One of the most desirable and walk-able areas for digital nomads who want easy access to the trendiest bars, restaurants and international social events.</p>]]></description>
       <styleUrl>#poly-558B2F-1200-92</styleUrl>
       <Polygon>
         <outerBoundaryIs>
