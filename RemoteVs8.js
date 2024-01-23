@@ -118,16 +118,16 @@ function createMarker(data) {
     marker.category2 = data.category2;
     marker.category3 = data.category3;
     markers.push(marker);
+    
     let infowindowContent = `
-   <div style="width:250px; word-wrap:break-word;">
+<div style="width:250px; word-wrap:break-word;">
     <div style="font-size:16px; font-weight:bold; color:black; font-family:'Gill Sans MT', Arial; margin-bottom:8px;">
-        ${data.popup_header}
-        <a href="#" onclick="copyToClipboard('${data.name}')" style="font-size:12px; font-family:'Gill Sans MT', Arial; margin-left:10px;">Copy Address</a>
+        ${escapeHTML(data.popup_header)}
+        <a href="#" onclick="copyToClipboard('${escapeHTML(data.name)}')" style="font-size:12px; font-family:'Gill Sans MT', Arial; margin-left:10px;">Copy Address</a>
     </div>
-    <img src="${data.popupimage_url}" style="width:100%; height:auto; margin-bottom:8px;">
-    <div style="font-size:12px; font-weight:bold; font-family:'Gill Sans MT', Arial;">${data.description}</div>
-    <a href="#" onclick="onGetDirectionsClick({lat:${data.lat},lng:${data.lng}},'${data.popup_header}')">Get Directions</a>
-</div>
+    <img src="${escapeHTML(data.popupimage_url)}" style="width:100%; height:auto; margin-bottom:8px;">
+    <div style="font-size:12px; font-weight:bold; font-family:'Gill Sans MT', Arial;">${escapeHTML(data.description)}</div>
+    <a href="#" onclick="onGetDirectionsClick({lat:${data.lat},lng:${data.lng}},'${escapeHTML(data.popup_header)}')">Get Directions</a>
 </div>
 `;
     let infowindow = new google.maps.InfoWindow({ content: infowindowContent });
@@ -136,6 +136,10 @@ function createMarker(data) {
         currentInfowindow = infowindow;
         infowindow.open(map, marker);
     });
+}
+
+function escapeHTML(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
 }
 
 function copyToClipboard(text) {
