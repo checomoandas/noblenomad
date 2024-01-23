@@ -1,3 +1,4 @@
+let currentInfowindow = null;  // Add this line
 let map, directionsService, directionsRenderer;
 let markers = []; // Initialize markers array
 let kmlLayers = [null, null, null], 
