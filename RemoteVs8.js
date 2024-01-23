@@ -119,12 +119,13 @@ function createMarker(data) {
     marker.category3 = data.category3;
     markers.push(marker);
     let infowindowContent = `
-    <div style="width:250px;word-wrap:break-word;">
-        <div style="font-size:16px;font-weight:bold;margin-bottom:8px;">${data.popup_header}</div>
-        <img src="${data.popupimage_url}" style="width:100%;height:auto;margin-bottom:8px;">
-        <div>${data.description}</div>
-        <a href="#" onclick="onGetDirectionsClick({lat:${data.lat},lng:${data.lng}},'${data.popup_header}')">Get Directions</a>
-    </div>`;
+   <div style="width:250px; word-wrap:break-word;">
+    <div style="font-size:16px; font-weight:bold; color:black; font-family:'Gill Sans MT', Arial; margin-bottom:8px;">${data.popup_header}</div>
+    <img src="${data.popupimage_url}" style="width:100%; height:auto; margin-bottom:8px;">
+    <div style="font-size:12px; font-weight:bold; font-family:'Gill Sans MT', Arial;">${data.description}</div>
+    <a href="#" onclick="onGetDirectionsClick({lat:${data.lat},lng:${data.lng}},'${data.popup_header}')">Get Directions</a>
+</div>
+`;
     let infowindow = new google.maps.InfoWindow({ content: infowindowContent });
     marker.addListener('click', () => {
         if (currentInfowindow) currentInfowindow.close();
