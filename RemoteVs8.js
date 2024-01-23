@@ -18,7 +18,7 @@ function loadGoogleMapsScript() {
 }
 
 function onGoogleMapsScriptLoad() {
-    document.addEventListener('DOMContentLoaded', initMap);
+    initMap();  // Initialize the map immediately
     initKMLLayers();
 }
 
