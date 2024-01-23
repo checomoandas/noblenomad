@@ -154,8 +154,8 @@
 </name>
       <description><![CDATA[ <div style="width: 200px; font-size: 16px;">
       <img src="https://github.com/checomoandas/noblenomad/blob/main/PalermoSoho.jpg?raw=true" style="width: 100%; max-width: 200px; height: auto;">
- <h1 style="font-family: 'Gill Sans MT', sans-serif; color: black; font-size: 14px;">PALERMO SOHO</h1>
-      <p style="font-size: 16px;"> One of the most desirable and walk-able areas for digital nomads who want easy access to the trendiest bars, restaurants and international social events.</p>]]></description>
+ <h1 style="font-family: 'Gill Sans MT', sans-serif; color: black; font-size: 16px;">PALERMO SOHO</h1>
+      <p style="font-size: 12px;"> One of the most desirable and walk-able areas for digital nomads who want easy access to the trendiest bars, restaurants and international social events.</p>]]></description>
       <styleUrl>#poly-558B2F-1200-92</styleUrl>
       <Polygon>
         <outerBoundaryIs>
