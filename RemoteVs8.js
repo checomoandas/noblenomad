@@ -138,6 +138,14 @@ function createMarker(data) {
     });
 }
 
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        alert('Address copied to clipboard!');
+    }).catch(err => {
+        console.error('Could not copy text: ', err);
+    });
+}
+
 function calculateAndDisplayRoute() {
     let start = document.getElementById('startLocation').value;
     let end = document.getElementById('endLocation').value;
