@@ -205,7 +205,6 @@ function copyAddress() {
         alert('Error in copying text: ', err);
     });
 }
-
 function applyFilters() {
     markers.forEach(marker => {
         let isVisible = false;
@@ -216,9 +215,11 @@ function applyFilters() {
                 marker.category && marker.category.split(',').includes(complexValue)
             );
 
-            // Further filter by category2 if any category2 filters are active
+            // Further filter by category2 if any category2 filters are active and complex filter is matched
             if (isVisible && activeFilters.category2.length > 0) {
-                isVisible = activeFilters.category2.includes(marker.category2);
+                isVisible = activeFilters.category2.some(category2Value => 
+                    marker.category2 && marker.category2.split(',').includes(category2Value)
+                );
             }
         }
 
@@ -233,3 +234,7 @@ function applyFilters() {
                 }
             }
         }
+
+        marker.setMap(isVisible ? map : null);
+    });
+}
