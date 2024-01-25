@@ -24,44 +24,44 @@ function onGoogleMapsScriptLoad() {
 
 loadGoogleMapsScript();
 
-function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), { center: { lat: -34.58, lng: -58.42 }, zoom: 13, mapTypeControl: false });
-    directionsService = new google.maps.DirectionsService();
-    directionsRenderer = new google.maps.DirectionsRenderer();
-    directionsRenderer.setMap(map);
-    new google.maps.places.Autocomplete(document.getElementById('startLocation'));
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), { center: { lat: -34.58, lng: -58.42 }, zoom: 13, mapTypeControl: false });
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+            new google.maps.places.Autocomplete(document.getElementById('startLocation'));
 
-    fetchMarkersData();
+            fetchMarkersData();
 
-    attachCategoryButtonsEventListeners();
-}
-
-function fetchMarkersData() {
-    fetch('https://raw.githubusercontent.com/checomoandas/noblenomad/main/BsAsPins.csv')
-        .then(response => response.text())
-        .then(processCSVData)
-        .catch(error => console.error('Error fetching or parsing CSV data:', error));
-}
-
-function processCSVData(csvData) {
-    csvData.split('\n').slice(1).forEach(line => {
-        const columns = line.split(',');
-        let data = {
-            name: columns[0], lat: parseFloat(columns[1]), lng: parseFloat(columns[2]), popup_header: columns[3], popupimage_url: columns[4], description: columns[5], icon_url: columns[6], category: columns[7], category2: columns[8], category3: columns[9]
-        };
-        if (!isNaN(data.lat) && !isNaN(data.lng)) {
-            createMarker(data);
+            attachCategoryButtonsEventListeners();
         }
-    });
-}
 
-function attachCategoryButtonsEventListeners() {
-    document.querySelectorAll('button[data-category]').forEach(button => {
-        button.addEventListener('click', function() {
-            handleCategoryButtonClick(this);
-        });
-    });
-}
+        function fetchMarkersData() {
+            fetch('https://raw.githubusercontent.com/checomoandas/noblenomad/main/BsAsPins.csv')
+                .then(response => response.text())
+                .then(processCSVData)
+                .catch(error => console.error('Error fetching or parsing CSV data:', error));
+        }
+
+        function processCSVData(csvData) {
+            csvData.split('\n').slice(1).forEach(line => {
+                const columns = line.split(',');
+                let data = {
+                    name: columns[0], lat: parseFloat(columns[1]), lng: parseFloat(columns[2]), popup_header: columns[3], popupimage_url: columns[4], description: columns[5], icon_url: columns[6], category: columns[7], category2: columns[8], category3: columns[9]
+                };
+                if (!isNaN(data.lat) && !isNaN(data.lng)) {
+                    createMarker(data);
+                }
+            });
+        }
+
+        function attachCategoryButtonsEventListeners() {
+            document.querySelectorAll('button[data-category]').forEach(button => {
+                button.addEventListener('click', function() {
+                    handleCategoryButtonClick(this);
+                });
+            });
+        }
 
 function handleCategoryButtonClick(button) {
     let categoryType = button.getAttribute('data-category');
@@ -80,6 +80,20 @@ function handleCategoryButtonClick(button) {
     applyFilters();
 }
 
+        function updateActiveFilters(categoryType, categoryValues, isActive) {
+            if (categoryType === 'complex') {
+                activeFilters.complex = isActive ? categoryValues : [];
+            } else {
+                categoryValues.forEach(value => {
+                    let index = activeFilters[categoryType].indexOf(value);
+                    if (index > -1) {
+                        activeFilters[categoryType].splice(index, 1);
+                    } else {
+                        activeFilters[categoryType].push(value);
+                    }
+                });
+            }
+        }
 function updateActiveFilters(categoryType, categoryValues, isActive) {
     if (categoryType !== 'complex') {
         categoryValues.forEach(value => {
@@ -91,13 +105,12 @@ function updateActiveFilters(categoryType, categoryValues, isActive) {
             }
         });
     }
-}  
-
- function initKMLLayers() {
-    kmlUrls.forEach((url, index) => {
-        kmlLayers[index] = new google.maps.KmlLayer({ url: url, map: null });
-    });
 }
+        function initKMLLayers() {
+            kmlUrls.forEach((url, index) => {
+                kmlLayers[index] = new google.maps.KmlLayer({ url: url, map: null });
+            });
+        }
         
 function toggleKMLLayer(index) {
     if (kmlLayers[index] && kmlLayers[index].setMap) {
@@ -217,10 +230,7 @@ function applyFilters() {
     markers.forEach(marker => {
         let isVisible = false;
         if (activeFilters.complex.length > 0) {
-            isVisible = activeFilters.complex.some(value => marker.category && marker.category.split(',').includes(value));
-        }
-        if (activeFilters.category2.length > 0) {
-            isVisible = isVisible && activeFilters.category2.includes(marker.category2);
+            isVisible = activeFilters.complex.some(value => marker.category && marker.category.split(',').includes(value)) && (activeFilters.category2.length === 0 || activeFilters.category2.includes(marker.category2));
         }
         if (!isVisible) {
             for (let type in activeFilters) {
