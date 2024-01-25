@@ -214,14 +214,23 @@ function copyAddress() {
 
 function applyFilters() {
     markers.forEach(marker => {
-        let isComplexVisible = activeFilters.complex.length > 0 ? activeFilters.complex.some(value => marker.category && marker.category.split(',').includes(value)) : false;
-        let isCategory2Visible = activeFilters.category2.length > 0 ? activeFilters.category2.includes(marker.category2) : true;
+        let isComplexVisible = false;
+        let isCategory2Visible = true;
 
-        // Set visibility based on both complex and category2 filters
-        let isVisible = (isComplexVisible && isCategory2Visible) || (!isComplexVisible && isCategory2Visible && activeFilters.complex.length === 0);
+        if (activeFilters.complex.length > 0) {
+            isComplexVisible = activeFilters.complex.some(value => marker.category && marker.category.split(',').includes(value));
+        }
+
+        if (activeFilters.category2.length > 0) {
+            isCategory2Visible = activeFilters.category2.includes(marker.category2);
+        }
+
+        let isVisible = false;
+        if (isComplexVisible || activeFilters.complex.length === 0) {
+            isVisible = isCategory2Visible;
+        }
 
         if (!isVisible) {
-            // Check other categories if no complex filters are active or no match was found
             for (let type in activeFilters) {
                 if (type !== 'complex' && type !== 'category2' && activeFilters[type].length > 0) {
                     isVisible = activeFilters[type].some(value => marker[type] && marker[type].split(',').includes(value));
