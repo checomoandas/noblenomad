@@ -80,20 +80,6 @@ function handleCategoryButtonClick(button) {
     applyFilters();
 }
 
-        function updateActiveFilters(categoryType, categoryValues, isActive) {
-            if (categoryType === 'complex') {
-                activeFilters.complex = isActive ? categoryValues : [];
-            } else {
-                categoryValues.forEach(value => {
-                    let index = activeFilters[categoryType].indexOf(value);
-                    if (index > -1) {
-                        activeFilters[categoryType].splice(index, 1);
-                    } else {
-                        activeFilters[categoryType].push(value);
-                    }
-                });
-            }
-        }
 function updateActiveFilters(categoryType, categoryValues, isActive) {
     if (categoryType !== 'complex') {
         categoryValues.forEach(value => {
@@ -228,18 +214,22 @@ function copyAddress() {
 
 function applyFilters() {
     markers.forEach(marker => {
-        let isVisible = false;
-        if (activeFilters.complex.length > 0) {
-            isVisible = activeFilters.complex.some(value => marker.category && marker.category.split(',').includes(value)) && (activeFilters.category2.length === 0 || activeFilters.category2.includes(marker.category2));
-        }
+        let isComplexVisible = activeFilters.complex.length > 0 ? activeFilters.complex.some(value => marker.category && marker.category.split(',').includes(value)) : false;
+        let isCategory2Visible = activeFilters.category2.length > 0 ? activeFilters.category2.includes(marker.category2) : true;
+
+        // Set visibility based on both complex and category2 filters
+        let isVisible = (isComplexVisible && isCategory2Visible) || (!isComplexVisible && isCategory2Visible && activeFilters.complex.length === 0);
+
         if (!isVisible) {
+            // Check other categories if no complex filters are active or no match was found
             for (let type in activeFilters) {
-                if (type !== 'complex' && activeFilters[type].length > 0) {
+                if (type !== 'complex' && type !== 'category2' && activeFilters[type].length > 0) {
                     isVisible = activeFilters[type].some(value => marker[type] && marker[type].split(',').includes(value));
                     if (isVisible) break;
                 }
             }
         }
+
         marker.setMap(isVisible ? map : null);
     });
 }
