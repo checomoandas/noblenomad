@@ -128,12 +128,12 @@ function createMarker(data) {
     // Infowindow content with a specific class for the "Copy Address" link
     let infowindowContent = `
 <div style="width:250px; word-wrap:break-word;">
-    <div style="font-size:16px; font-weight:bold; color:black; font-family:'Gill Sans MT', Arial; margin-bottom:8px;">
+    <div style="font-size:20px; font-weight:bold; color:black; font-family:'Gill Sans MT', Arial; margin-bottom:8px;">
         ${escapeHTML(data.popup_header)}
-        <a href="#" class="copy-address-link" style="font-size:12px; font-family:'Gill Sans MT', Arial; margin-left:10px;">Copy Address</a>
+        <a href="#" class="copy-address-link" style="font-size:14px; font-family:'Gill Sans MT', Arial; margin-left:10px;">COPY ADDRESS</a>
     </div>
     <img src="${escapeHTML(data.popupimage_url)}" style="width:100%; height:auto; margin-bottom:8px;">
-    <div style="font-size:12px; font-weight:bold; font-family:'Gill Sans MT', Arial;">${escapeHTML(data.description)}</div>
+    <div style="font-size:16px; color:black; font-family:'Gill Sans MT', Arial;">${escapeHTML(data.description)}</div>
     <a href="#" onclick="onGetDirectionsClick({lat:${data.lat},lng:${data.lng}},'${escapeHTML(data.popup_header)}')">Get Directions</a>
 </div>
 `;
