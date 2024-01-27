@@ -1,13 +1,13 @@
-let currentInfowindow = null;  // Add this line
+let currentInfowindow = null;
 let map, directionsService, directionsRenderer;
-let markers = []; // Initialize markers array
-let kmlLayers = [null, null, null], 
+let markers = [];
+let kmlLayers = [null, null, null],
     kmlUrls = [
-        'https://raw.githubusercontent.com/checomoandas/noblenomad/main/Safest%20and%20most%20walkable.kml', 
-        'https://raw.githubusercontent.com/checomoandas/noblenomad/main/Safe%20but%20less%20walkable.kml', 
+        'https://raw.githubusercontent.com/checomoandas/noblenomad/main/Safest%20and%20most%20walkable.kml',
+        'https://raw.githubusercontent.com/checomoandas/noblenomad/main/Safe%20but%20less%20walkable.kml',
         'https://raw.githubusercontent.com/checomoandas/noblenomad/main/Feels%20sketchy%20at%20night.kml'
     ];
-let activeFilters = { category: [], category2: [], category3: [], complex: [] }; // Ensure activeFilters is also declared
+let activeFilters = { category: [], category2: [], category3: [], complex: [] };
 
 function loadGoogleMapsScript() {
     const script = document.createElement('script');
@@ -18,91 +18,95 @@ function loadGoogleMapsScript() {
 }
 
 function onGoogleMapsScriptLoad() {
-    initMap();  // Initialize the map immediately
+    initMap();
     initKMLLayers();
 }
 
 loadGoogleMapsScript();
 
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), { center: { lat: -34.58, lng: -58.42 }, zoom: 13, mapTypeControl: false });
-            directionsService = new google.maps.DirectionsService();
-            directionsRenderer = new google.maps.DirectionsRenderer();
-            directionsRenderer.setMap(map);
-            new google.maps.places.Autocomplete(document.getElementById('startLocation'));
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), { center: { lat: -34.58, lng: -58.42 }, zoom: 13, mapTypeControl: false });
+    directionsService = new google.maps.DirectionsService();
+    directionsRenderer = new google.maps.DirectionsRenderer();
+    directionsRenderer.setMap(map);
+    new google.maps.places.Autocomplete(document.getElementById('startLocation'));
 
-            fetchMarkersData();
+    fetchMarkersData();
 
-            attachCategoryButtonsEventListeners();
+    attachCategoryButtonsEventListeners();
+}
+
+function fetchMarkersData() {
+    fetch('https://raw.githubusercontent.com/checomoandas/noblenomad/main/BsAsPins.csv')
+        .then(response => response.text())
+        .then(processCSVData)
+        .catch(error => console.error('Error fetching or parsing CSV data:', error));
+}
+
+function processCSVData(csvData) {
+    csvData.split('\n').slice(1).forEach(line => {
+        const columns = line.split(',');
+        let data = {
+            lat: parseFloat(columns[1]), lng: parseFloat(columns[2]), 
+            popup_header: columns[3], popupimage_url: columns[4], 
+            description: columns[5], icon_url: columns[6], 
+            category: columns[7], category2: columns[8], category3: columns[9]
+        };
+        if (!isNaN(data.lat) && !isNaN(data.lng)) {
+            createMarker(data);
         }
+    });
+}
 
-        function fetchMarkersData() {
-            fetch('https://raw.githubusercontent.com/checomoandas/noblenomad/main/BsAsPins.csv')
-                .then(response => response.text())
-                .then(processCSVData)
-                .catch(error => console.error('Error fetching or parsing CSV data:', error));
-        }
+function attachCategoryButtonsEventListeners() {
+    document.querySelectorAll('button[data-category]').forEach(button => {
+        button.addEventListener('click', function() {
+            handleCategoryButtonClick(this);
+        });
+    });
+}
 
-        function processCSVData(csvData) {
-            csvData.split('\n').slice(1).forEach(line => {
-                const columns = line.split(',');
-                let data = {
-                    name: columns[0], lat: parseFloat(columns[1]), lng: parseFloat(columns[2]), popup_header: columns[3], popupimage_url: columns[4], description: columns[5], icon_url: columns[6], category: columns[7], category2: columns[8], category3: columns[9]
-                };
-                if (!isNaN(data.lat) && !isNaN(data.lng)) {
-                    createMarker(data);
-                }
-            });
-        }
+function handleCategoryButtonClick(button) {
+    let categoryType = button.getAttribute('data-category');
+    let categoryValue = button.getAttribute('data-value');
+    button.classList.toggle('active');
 
-        function attachCategoryButtonsEventListeners() {
-            document.querySelectorAll('button[data-category]').forEach(button => {
-                button.addEventListener('click', function() {
-                    handleCategoryButtonClick(this);
-                });
-            });
-        }
-        function handleCategoryButtonClick(button) {
-            let categoryType = button.getAttribute('data-category');
-            let categoryValue = button.getAttribute('data-value');
-            button.classList.toggle('active');
+    if (categoryType === 'complex') {
+        updateComplexFilters(categoryValue, button.classList.contains('active'));
+    } else {
+        updateActiveFilters(categoryType, categoryValue, button.classList.contains('active'));
+    }
+    applyFilters();
+}
 
-            if (categoryType === 'complex') {
-                updateComplexFilters(categoryValue, button.classList.contains('active'));
-            } else {
-                updateActiveFilters(categoryType, categoryValue, button.classList.contains('active'));
-            }
-            applyFilters();
-        }
+function updateComplexFilters(categoryValue, isActive) {
+    let index = activeFilters.complex.indexOf(categoryValue);
+    if (index > -1 && !isActive) {
+        activeFilters.complex.splice(index, 1);
+    } else if (isActive && index === -1) {
+        activeFilters.complex.push(categoryValue);
+    }
+}
 
-        function updateComplexFilters(categoryValue, isActive) {
-            let index = activeFilters.complex.indexOf(categoryValue);
-            if (index > -1 && !isActive) {
-                activeFilters.complex.splice(index, 1);
-            } else if (isActive && index === -1) {
-                activeFilters.complex.push(categoryValue);
-            }
-        }
+function updateActiveFilters(categoryType, categoryValue, isActive) {
+    let index = activeFilters[categoryType].indexOf(categoryValue);
+    if (index > -1 && !isActive) {
+        activeFilters[categoryType].splice(index, 1);
+    } else if (isActive && index === -1) {
+        activeFilters[categoryType].push(categoryValue);
+    }
+}
 
-        function updateActiveFilters(categoryType, categoryValue, isActive) {
-            let index = activeFilters[categoryType].indexOf(categoryValue);
-            if (index > -1 && !isActive) {
-                activeFilters[categoryType].splice(index, 1);
-            } else if (isActive && index === -1) {
-                activeFilters[categoryType].push(categoryValue);
-            }
-        }
-
-        function initKMLLayers() {
-            kmlUrls.forEach((url, index) => {
-                kmlLayers[index] = new google.maps.KmlLayer({ url: url, map: null });
-            });
-        }
+function initKMLLayers() {
+    kmlUrls.forEach((url, index) => {
+        kmlLayers[index] = new google.maps.KmlLayer({ url: url, map: null });
+    });
+}
 
 function applyFilters() {
     markers.forEach(marker => {
         let isComplexVisible = activeFilters.complex.length === 0 || activeFilters.complex.some(value => marker.category && marker.category.split(',').includes(value));
-        let isCategory2Visible = activeFilters.category2.length === 0 || activeFilters.category2.some(value => marker.category2 && marker.category2.split(',').includes(value));
+        let isCategory2Visible = activeFilters.category2.length === 0 || activeFilters.category2.some(value => marker.category2 && marker.category2.split('|').includes(value));
         let isCategoryVisible = activeFilters.category.length === 0 || activeFilters.category.some(value => marker.category && marker.category.split(',').includes(value));
 
         let isVisible = (isComplexVisible && isCategory2Visible) || isCategoryVisible || (activeFilters.category2.length > 0 && isCategory2Visible);
@@ -138,7 +142,6 @@ function createMarker(data) {
     marker.category3 = data.category3;
     markers.push(marker);
 
-    // Infowindow content with a specific class for the "Copy Address" link
     let infowindowContent = `
 <div style="width:250px; word-wrap:break-word;">
     <div style="font-size:20px; font-weight:bold; color:black; font-family:'Gill Sans MT', Arial; margin-bottom:8px;">
@@ -157,7 +160,6 @@ function createMarker(data) {
         currentInfowindow = infowindow;
         infowindow.open(map, marker);
 
-        // Set up the event listener after the infowindow is opened
         google.maps.event.addListenerOnce(infowindow, 'domready', () => {
             document.querySelector('.copy-address-link').addEventListener('click', function(event) {
                 event.preventDefault();
@@ -178,7 +180,6 @@ function copyToClipboard(text) {
         console.error('Could not copy text: ', err);
     });
 }
-
 
 function calculateAndDisplayRoute() {
     let start = document.getElementById('startLocation').value;
