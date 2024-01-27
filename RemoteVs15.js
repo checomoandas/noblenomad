@@ -68,14 +68,16 @@ function attachCategoryButtonsEventListeners() {
 
 function handleCategoryButtonClick(button) {
     let categoryType = button.getAttribute('data-category');
-    let categoryValue = button.getAttribute('data-value');
+    let categoryValues = button.getAttribute('data-values').split(',');
+
     button.classList.toggle('active');
 
-    if (categoryType === 'complex') {
-        updateComplexFilters(categoryValue, button.classList.contains('active'));
+    if (button.classList.contains('active')) {
+        activeFilters[categoryType] = [...new Set([...activeFilters[categoryType], ...categoryValues])];
     } else {
-        updateActiveFilters(categoryType, categoryValue, button.classList.contains('active'));
+        activeFilters[categoryType] = activeFilters[categoryType].filter(val => !categoryValues.includes(val));
     }
+
     applyFilters();
 }
 
@@ -105,12 +107,12 @@ function initKMLLayers() {
 
 function applyFilters() {
     markers.forEach(marker => {
-        let isComplexVisible = activeFilters.complex.length === 0 || activeFilters.complex.some(value => marker.category && marker.category.split(',').includes(value));
-        let isCategory2Visible = activeFilters.category2.length === 0 || activeFilters.category2.some(value => marker.category2 && marker.category2.split('|').includes(value));
-        let isCategoryVisible = activeFilters.category.length === 0 || activeFilters.category.some(value => marker.category && marker.category.split(',').includes(value));
-
-        let isVisible = (isComplexVisible && isCategory2Visible) || isCategoryVisible || (activeFilters.category2.length > 0 && isCategory2Visible);
-        
+        let isVisible = true;
+        for (let type in activeFilters) {
+            if (activeFilters[type].length > 0) {
+                isVisible = isVisible && activeFilters[type].some(value => marker[type] && marker[type].split(',').includes(value));
+            }
+        }
         marker.setMap(isVisible ? map : null);
     });
 }
