@@ -99,17 +99,17 @@ loadGoogleMapsScript();
             });
         }
 
-  function applyFilters() {
-            markers.forEach(marker => {
-                let isComplexVisible = activeFilters.complex.length === 0 || activeFilters.complex.some(value => marker.category && marker.category.split(',').includes(value));
-                let isCategory2Visible = activeFilters.category2.length === 0 || activeFilters.category2.some(value => marker.category2 && marker.category2.split(',').includes(value));
-                let isCategoryVisible = activeFilters.category.length === 0 || activeFilters.category.some(value => marker.category && marker.category.split(',').includes(value));
+function applyFilters() {
+    markers.forEach(marker => {
+        let isComplexVisible = activeFilters.complex.length === 0 || activeFilters.complex.some(value => marker.category && marker.category.split(',').includes(value));
+        let isCategory2Visible = activeFilters.category2.length === 0 || activeFilters.category2.some(value => marker.category2 && marker.category2.split(',').includes(value));
+        let isCategoryVisible = activeFilters.category.length === 0 || activeFilters.category.some(value => marker.category && marker.category.split(',').includes(value));
 
-                let isVisible = isComplexVisible && isCategory2Visible || isCategoryVisible;
-                
-                marker.setMap(isVisible ? map : null);
-            });
-        }
+        let isVisible = (isComplexVisible && isCategory2Visible) || isCategoryVisible || (activeFilters.category2.length > 0 && isCategory2Visible);
+        
+        marker.setMap(isVisible ? map : null);
+    });
+}
 
 function toggleKMLLayer(index) {
     if (kmlLayers[index] && kmlLayers[index].setMap) {
