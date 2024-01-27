@@ -68,7 +68,20 @@ function attachCategoryButtonsEventListeners() {
 
 function handleCategoryButtonClick(button) {
     let categoryType = button.getAttribute('data-category');
-    let categoryValues = button.hasAttribute('data-values') ? button.getAttribute('data-values').split(',') : [button.getAttribute('data-value')];
+    if (!categoryType) {
+        console.error('Button does not have a data-category attribute', button);
+        return; // Exit the function if categoryType is null or undefined.
+    }
+
+    let categoryValues;
+    if (button.hasAttribute('data-values')) {
+        categoryValues = button.getAttribute('data-values').split(',');
+    } else if (button.hasAttribute('data-value')) {
+        categoryValues = [button.getAttribute('data-value')];
+    } else {
+        console.error('Button does not have data-values or data-value attributes', button);
+        return; // Exit the function if neither attribute is present.
+    }
 
     button.classList.toggle('active');
 
