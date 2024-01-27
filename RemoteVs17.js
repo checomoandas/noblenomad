@@ -68,7 +68,7 @@ function attachCategoryButtonsEventListeners() {
 
 function handleCategoryButtonClick(button) {
     let categoryType = button.getAttribute('data-category');
-    let categoryValues = button.getAttribute('data-values').split(',');
+    let categoryValues = button.hasAttribute('data-values') ? button.getAttribute('data-values').split(',') : [button.getAttribute('data-value')];
 
     button.classList.toggle('active');
 
