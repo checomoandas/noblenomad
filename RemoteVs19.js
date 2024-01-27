@@ -47,16 +47,16 @@ function processCSVData(csvData) {
     csvData.split('\n').slice(1).forEach(line => {
         const columns = line.split(',');
         let data = {
-            lat: parseFloat(columns[1]), lng: parseFloat(columns[2]), 
-            popup_header: columns[3], popupimage_url: columns[4], 
-            description: columns[5], icon_url: columns[6], 
-            category: columns[7], category2: columns[8], category3: columns[9]
+            // ... other data fields ...
+            category2: columns[8], // This column contains the days like "mon|tue|wed"
+            // ... other data fields ...
         };
         if (!isNaN(data.lat) && !isNaN(data.lng)) {
             createMarker(data);
         }
     });
 }
+
 
 function attachCategoryButtonsEventListeners() {
     document.querySelectorAll('button[data-category]').forEach(button => {
@@ -130,16 +130,16 @@ function applyFilters() {
             isComplexVisible = true; // If no complex filters are active, do not filter by complex.
         }
 
-        // Check if the marker's category2 matches any active category2 filters.
-        if (activeFilters.category2.length > 0) {
-            isCategory2Visible = activeFilters.category2.some(value => marker.category2 && marker.category2.split(',').includes(value));
+        // Check if the marker's category2 (days) matches any active category2 filters.
+        if (activeFilters.category2.length > 0 && marker.category2) {
+            let markerCategory2Values = marker.category2.split('|'); // Splitting the category2 values of the marker using the pipe ('|') separator.
+            isCategory2Visible = activeFilters.category2.some(value => markerCategory2Values.includes(value));
         }
 
         let isVisible = isComplexVisible && isCategory2Visible;
         marker.setMap(isVisible ? map : null);
     });
 }
-
 function toggleKMLLayer(index) {
     if (kmlLayers[index] && kmlLayers[index].setMap) {
         if (kmlLayers[index].getMap()) {
