@@ -135,14 +135,13 @@ function applyFilters() {
         let isCategory2Visible = activeFilters.category2.length === 0; // Default to true if no category2 filters are active.
 
         // Check complex category
-        if (activeFilters.complex.length > 0) {
-            isComplexVisible = activeFilters.complex.some(value => marker.category && marker.category.split(',').includes(value));
+        if (activeFilters.complex.length > 0 && marker.category) {
+            isComplexVisible = activeFilters.complex.some(value => marker.category.includes(value));
         }
 
         // Check category2
         if (activeFilters.category2.length > 0 && marker.category2) {
-            let markerCategory2Values = marker.category2.split('|'); // Splitting by pipe '|'
-            isCategory2Visible = activeFilters.category2.some(value => markerCategory2Values.includes(value));
+            isCategory2Visible = activeFilters.category2.some(value => marker.category2.includes(value));
         }
 
         let isVisible = isComplexVisible && isCategory2Visible;
