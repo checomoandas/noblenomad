@@ -46,11 +46,22 @@ function fetchMarkersData() {
 function processCSVData(csvData) {
     csvData.split('\n').slice(1).forEach(line => {
         const columns = line.split(',');
+
+        // Assuming columns order: name, latitude, longitude, popup_header, popupimage_url, description, icon_url, category, category2, category3
         let data = {
-            // ... other data fields ...
-            category2: columns[8], // This column contains the days like "mon|tue|wed"
-            // ... other data fields ...
+            name: columns[0],
+            lat: parseFloat(columns[1]), 
+            lng: parseFloat(columns[2]),
+            popup_header: columns[3],
+            popupimage_url: columns[4],
+            description: columns[5],
+            icon_url: columns[6],
+            // Splitting categories by '|' if they exist
+            category: columns[7] ? columns[7].split('|') : [], 
+            category2: columns[8] ? columns[8].split('|') : [],
+            category3: columns[9] ? columns[9].split('|') : []
         };
+
         if (!isNaN(data.lat) && !isNaN(data.lng)) {
             createMarker(data);
         }
@@ -120,19 +131,17 @@ function initKMLLayers() {
 
 function applyFilters() {
     markers.forEach(marker => {
-        let isComplexVisible = false;
+        let isComplexVisible = activeFilters.complex.length === 0; // Default to true if no complex filters are active.
         let isCategory2Visible = activeFilters.category2.length === 0; // Default to true if no category2 filters are active.
 
-        // Check if the marker's complex category matches any active complex filters.
+        // Check complex category
         if (activeFilters.complex.length > 0) {
             isComplexVisible = activeFilters.complex.some(value => marker.category && marker.category.split(',').includes(value));
-        } else {
-            isComplexVisible = true; // If no complex filters are active, do not filter by complex.
         }
 
-        // Check if the marker's category2 (days) matches any active category2 filters.
+        // Check category2
         if (activeFilters.category2.length > 0 && marker.category2) {
-            let markerCategory2Values = marker.category2.split('|'); // Splitting the category2 values of the marker using the pipe ('|') separator.
+            let markerCategory2Values = marker.category2.split('|'); // Splitting by pipe '|'
             isCategory2Visible = activeFilters.category2.some(value => markerCategory2Values.includes(value));
         }
 
@@ -140,6 +149,7 @@ function applyFilters() {
         marker.setMap(isVisible ? map : null);
     });
 }
+
 function toggleKMLLayer(index) {
     if (kmlLayers[index] && kmlLayers[index].setMap) {
         if (kmlLayers[index].getMap()) {
