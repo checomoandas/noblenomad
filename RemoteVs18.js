@@ -120,14 +120,14 @@ function initKMLLayers() {
 
 function applyFilters() {
     markers.forEach(marker => {
-        let isCategoryVisible = false;
+        let isComplexVisible = false;
         let isCategory2Visible = activeFilters.category2.length === 0; // Default to true if no category2 filters are active.
 
-        // Check if the marker's category matches any active category filters.
-        if (activeFilters.category.length > 0) {
-            isCategoryVisible = activeFilters.category.some(value => marker.category && marker.category.split(',').includes(value));
+        // Check if the marker's complex category matches any active complex filters.
+        if (activeFilters.complex.length > 0) {
+            isComplexVisible = activeFilters.complex.some(value => marker.category && marker.category.split(',').includes(value));
         } else {
-            isCategoryVisible = true; // If no category filters are active, do not filter by category.
+            isComplexVisible = true; // If no complex filters are active, do not filter by complex.
         }
 
         // Check if the marker's category2 matches any active category2 filters.
@@ -135,7 +135,7 @@ function applyFilters() {
             isCategory2Visible = activeFilters.category2.some(value => marker.category2 && marker.category2.split(',').includes(value));
         }
 
-        let isVisible = isCategoryVisible && isCategory2Visible;
+        let isVisible = isComplexVisible && isCategory2Visible;
         marker.setMap(isVisible ? map : null);
     });
 }
