@@ -15,14 +15,14 @@ let currentImageIndex = 0;
 function onLeftArrowClick() {
     if (currentImageIndex > 0) {
         currentImageIndex--;
-        updateInfowindowImage();
+        refreshInfowindowContent();
     }
 }
 
 function onRightArrowClick() {
     if (currentImageIndex < currentImageUrls.length - 1) {
         currentImageIndex++;
-        updateInfowindowImage();
+        refreshInfowindowContent();
     }
 }
 
@@ -31,8 +31,14 @@ function updateInfowindowImage() {
         let imageElement = currentInfowindow.getContent().querySelector('.infowindow-image');
         imageElement.src = escapeHTML(currentImageUrls[currentImageIndex]);
     }
+    
 }
-
+function refreshInfowindowContent() {
+    if (currentInfowindow) {
+        let content = createInfowindowContent(currentImageUrls[currentImageIndex]);
+        currentInfowindow.setContent(content);
+    }
+}
 function loadGoogleMapsScript() {
     const script = document.createElement('script');
     script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCAK_oC-2iPESygmTO20tMTBJ5Eyu5_3Rw&libraries=places&callback=onGoogleMapsScriptLoad';
@@ -194,8 +200,7 @@ function createMarker(data) {
     <a href="#" onclick="onGetDirectionsClick({lat:${data.lat},lng:${data.lng}},'${escapeHTML(data.popup_header)}')">Get Directions</a>
 </div>
 `;
-
-    let infowindow = new google.maps.InfoWindow({ content: infowindowContent });
+let infowindow = new google.maps.InfoWindow({ content: createInfowindowContent(imageUrls[0]) });
     marker.addListener('click', () => {
         currentImageUrls = imageUrls;
         currentImageIndex = 0;
@@ -203,7 +208,6 @@ function createMarker(data) {
         if (currentInfowindow) currentInfowindow.close();
         currentInfowindow = infowindow;
         infowindow.open(map, marker);
-        updateInfowindowImage();
 
         google.maps.event.addListenerOnce(infowindow, 'domready', () => {
             document.querySelector('.copy-address-link').addEventListener('click', function(event) {
