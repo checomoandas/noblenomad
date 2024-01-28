@@ -179,7 +179,7 @@ function createMarker(data) {
 
     let imageUrls = data.popupimage_url.split('|');
 
- let infowindow = new google.maps.InfoWindow({ content: createInfowindowContent(imageUrls[0]) });
+let infowindow = new google.maps.InfoWindow({ content: createInfowindowContent(data, imageUrls[0]) });
 
 marker.addListener('click', () => {
     currentImageUrls = imageUrls;
@@ -198,14 +198,12 @@ marker.addListener('click', () => {
     });
 }
 
-function createInfowindowContent(imageUrl) {
+function createInfowindowContent(data, imageUrl) {
     return `
         <div style="width:250px; word-wrap:break-word;">
-            <!-- Other content here -->
-            <div style="position: relative;">
-                <img class="infowindow-image" src="${imageUrl}" style="width:100%; height:auto; margin-bottom:8px;">
-                <button onclick="onLeftArrowClick()" style="position: absolute; left: 0; top: 50%;">&#9664;</button>
-                <button onclick="onRightArrowClick()" style="position: absolute; right: 0; top: 50%;">&#9654;</button>
+            <div style="font-size:20px; font-weight:bold; color:black; font-family:'Gill Sans MT', Arial; margin-bottom:8px;">
+                ${escapeHTML(data.popup_header)}
+                <a href="#" class="copy-address-link" style="font-size:14px; font-family:'Gill Sans MT', Arial; margin-left:16px;">COPY ADDRESS</a>
             </div>
             <div style="position: relative;">
                 <img class="infowindow-image" src="${escapeHTML(imageUrl)}" style="width:100%; height:auto; margin-bottom:8px;">
