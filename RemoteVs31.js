@@ -1,4 +1,4 @@
-elet currentInfowindow = null;
+let currentInfowindow = null;
 let map, directionsService, directionsRenderer;
 let markers = [];
 let kmlLayers = [null, null, null],
