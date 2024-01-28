@@ -1,4 +1,4 @@
-let currentInfowindow = null;
+elet currentInfowindow = null;
 let map, directionsService, directionsRenderer;
 let markers = [];
 let kmlLayers = [null, null, null],
@@ -220,8 +220,13 @@ function createInfowindowContent(imageUrl) {
 
 
 function escapeHTML(str) {
+    if (typeof str !== 'string') {
+        console.error("Invalid input for escapeHTML: ", str);
+        return ""; // Return an empty string or handle the error as needed
+    }
     return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
 }
+
 
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
