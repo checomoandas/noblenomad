@@ -26,19 +26,14 @@ function onRightArrowClick() {
     }
 }
 
-function updateInfowindowImage() {
-    if (currentInfowindow) {
-        let imageElement = currentInfowindow.getContent().querySelector('.infowindow-image');
-        imageElement.src = escapeHTML(currentImageUrls[currentImageIndex]);
-    }
-    
-}
 function refreshInfowindowContent() {
     if (currentInfowindow) {
         let content = createInfowindowContent(currentImageUrls[currentImageIndex]);
         currentInfowindow.setContent(content);
     }
 }
+
+
 function loadGoogleMapsScript() {
     const script = document.createElement('script');
     script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCAK_oC-2iPESygmTO20tMTBJ5Eyu5_3Rw&libraries=places&callback=onGoogleMapsScriptLoad';
@@ -167,7 +162,6 @@ function toggleKMLLayer(index) {
         }
     }
 }
-
 function createMarker(data) {
     let markerOptions = {
         position: { lat: data.lat, lng: data.lng },
@@ -185,22 +179,8 @@ function createMarker(data) {
 
     let imageUrls = data.popupimage_url.split('|');
 
-    let infowindowContent = `
-<div style="width:250px; word-wrap:break-word;">
-    <div style="font-size:20px; font-weight:bold; color:black; font-family:'Gill Sans MT', Arial; margin-bottom:8px;">
-        ${escapeHTML(data.popup_header)}
-        <a href="#" class="copy-address-link" style="font-size:14px; font-family:'Gill Sans MT', Arial; margin-left:16px;">COPY ADDRESS</a>
-    </div>
-    <div style="position: relative;">
-        <img class="infowindow-image" src="${escapeHTML(imageUrls[0])}" style="width:100%; height:auto; margin-bottom:8px;">
-        <button onclick="onLeftArrowClick()" style="position: absolute; left: 0; top: 50%;">&#9664;</button>
-        <button onclick="onRightArrowClick()" style="position: absolute; right: 0; top: 50%;">&#9654;</button>
-    </div>
-    <div style="font-size:16px; color:black; font-family:'Gill Sans MT', Arial;">${escapeHTML(data.description)}</div>
-    <a href="#" onclick="onGetDirectionsClick({lat:${data.lat},lng:${data.lng}},'${escapeHTML(data.popup_header)}')">Get Directions</a>
-</div>
-`;
-let infowindow = new google.maps.InfoWindow({ content: createInfowindowContent(imageUrls[0]) });
+    let infowindow = new google.maps.InfoWindow({ content: createInfowindowContent(data, imageUrls[0]) });
+
     marker.addListener('click', () => {
         currentImageUrls = imageUrls;
         currentImageIndex = 0;
@@ -217,6 +197,25 @@ let infowindow = new google.maps.InfoWindow({ content: createInfowindowContent(i
         });
     });
 }
+
+function createInfowindowContent(data, imageUrl) {
+    return `
+        <div style="width:250px; word-wrap:break-word;">
+            <div style="font-size:20px; font-weight:bold; color:black; font-family:'Gill Sans MT', Arial; margin-bottom:8px;">
+                ${escapeHTML(data.popup_header)}
+                <a href="#" class="copy-address-link" style="font-size:14px; font-family:'Gill Sans MT', Arial; margin-left:16px;">COPY ADDRESS</a>
+            </div>
+            <div style="position: relative;">
+                <img class="infowindow-image" src="${escapeHTML(imageUrl)}" style="width:100%; height:auto; margin-bottom:8px;">
+                <button onclick="onLeftArrowClick()" style="position: absolute; left: 0; top: 50%;">&#9664;</button>
+                <button onclick="onRightArrowClick()" style="position: absolute; right: 0; top: 50%;">&#9654;</button>
+            </div>
+            <div style="font-size:16px; color:black; font-family:'Gill Sans MT', Arial;">${escapeHTML(data.description)}</div>
+            <a href="#" onclick="onGetDirectionsClick({lat:${data.lat},lng:${data.lng}},'${escapeHTML(data.popup_header)}')">Get Directions</a>
+        </div>
+    `;
+}
+
 
 function escapeHTML(str) {
     return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
