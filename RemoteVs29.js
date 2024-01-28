@@ -27,7 +27,7 @@ function onRightArrowClick() {
 }
 
 function refreshInfowindowContent() {
-    if (currentInfowindow && currentImageUrls.length > 0) {
+    if (currentInfowindow && currentImageUrls.length > 0 && currentImageUrls[currentImageIndex]) {
         let content = createInfowindowContent(currentImageUrls[currentImageIndex]);
         currentInfowindow.setContent(content);
     }
@@ -198,20 +198,22 @@ marker.addListener('click', () => {
     });
 }
 
-function createInfowindowContent(data, imageUrl) {
+function createInfowindowContent(imageUrl) {
+    // Check if imageUrl is defined
+    if (!imageUrl) {
+        console.error("ImageUrl is undefined in createInfowindowContent");
+        return ""; // Return an empty string or some default content
+    }
+
     return `
         <div style="width:250px; word-wrap:break-word;">
-            <div style="font-size:20px; font-weight:bold; color:black; font-family:'Gill Sans MT', Arial; margin-bottom:8px;">
-                ${escapeHTML(data.popup_header)}
-                <a href="#" class="copy-address-link" style="font-size:14px; font-family:'Gill Sans MT', Arial; margin-left:16px;">COPY ADDRESS</a>
-            </div>
+            <!-- Other content here -->
             <div style="position: relative;">
                 <img class="infowindow-image" src="${escapeHTML(imageUrl)}" style="width:100%; height:auto; margin-bottom:8px;">
                 <button onclick="onLeftArrowClick()" style="position: absolute; left: 0; top: 50%;">&#9664;</button>
                 <button onclick="onRightArrowClick()" style="position: absolute; right: 0; top: 50%;">&#9654;</button>
             </div>
-            <div style="font-size:16px; color:black; font-family:'Gill Sans MT', Arial;">${escapeHTML(data.description)}</div>
-            <a href="#" onclick="onGetDirectionsClick({lat:${data.lat},lng:${data.lng}},'${escapeHTML(data.popup_header)}')">Get Directions</a>
+            <!-- You can add more content here if needed, like description or header -->
         </div>
     `;
 }
