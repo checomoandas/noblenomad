@@ -27,7 +27,7 @@ function onRightArrowClick() {
 }
 
 function refreshInfowindowContent() {
-    if (currentInfowindow) {
+    if (currentInfowindow && currentImageUrls.length > 0) {
         let content = createInfowindowContent(currentImageUrls[currentImageIndex]);
         currentInfowindow.setContent(content);
     }
@@ -179,17 +179,17 @@ function createMarker(data) {
 
     let imageUrls = data.popupimage_url.split('|');
 
-    let infowindow = new google.maps.InfoWindow({ content: createInfowindowContent(data, imageUrls[0]) });
+ let infowindow = new google.maps.InfoWindow({ content: createInfowindowContent(imageUrls[0]) });
 
-    marker.addListener('click', () => {
-        currentImageUrls = imageUrls;
-        currentImageIndex = 0;
+marker.addListener('click', () => {
+    currentImageUrls = imageUrls;
+    currentImageIndex = 0;
 
-        if (currentInfowindow) currentInfowindow.close();
-        currentInfowindow = infowindow;
-        infowindow.open(map, marker);
+    if (currentInfowindow) currentInfowindow.close();
+    currentInfowindow = infowindow;
+    infowindow.open(map, marker);
 
-        google.maps.event.addListenerOnce(infowindow, 'domready', () => {
+    google.maps.event.addListenerOnce(infowindow, 'domready', () => {
             document.querySelector('.copy-address-link').addEventListener('click', function(event) {
                 event.preventDefault();
                 copyToClipboard(data.name);
@@ -198,12 +198,14 @@ function createMarker(data) {
     });
 }
 
-function createInfowindowContent(data, imageUrl) {
+function createInfowindowContent(imageUrl) {
     return `
         <div style="width:250px; word-wrap:break-word;">
-            <div style="font-size:20px; font-weight:bold; color:black; font-family:'Gill Sans MT', Arial; margin-bottom:8px;">
-                ${escapeHTML(data.popup_header)}
-                <a href="#" class="copy-address-link" style="font-size:14px; font-family:'Gill Sans MT', Arial; margin-left:16px;">COPY ADDRESS</a>
+            <!-- Other content here -->
+            <div style="position: relative;">
+                <img class="infowindow-image" src="${imageUrl}" style="width:100%; height:auto; margin-bottom:8px;">
+                <button onclick="onLeftArrowClick()" style="position: absolute; left: 0; top: 50%;">&#9664;</button>
+                <button onclick="onRightArrowClick()" style="position: absolute; right: 0; top: 50%;">&#9654;</button>
             </div>
             <div style="position: relative;">
                 <img class="infowindow-image" src="${escapeHTML(imageUrl)}" style="width:100%; height:auto; margin-bottom:8px;">
