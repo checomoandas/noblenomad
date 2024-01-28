@@ -228,6 +228,10 @@ function createMarker(data) {
         });
     });
 }
+
+window.onLeftArrowClick = onLeftArrowClick;
+window.onRightArrowClick = onRightArrowClick;
+
 function escapeHTML(str) {
     return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
 }
