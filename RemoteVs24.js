@@ -9,6 +9,30 @@ let kmlLayers = [null, null, null],
     ];
 let activeFilters = { category: [], category2: [], category3: [], complex: [] };
 
+let currentImageUrls = [];
+let currentImageIndex = 0;
+
+function onLeftArrowClick() {
+    if (currentImageIndex > 0) {
+        currentImageIndex--;
+        updateInfowindowImage();
+    }
+}
+
+function onRightArrowClick() {
+    if (currentImageIndex < currentImageUrls.length - 1) {
+        currentImageIndex++;
+        updateInfowindowImage();
+    }
+}
+
+function updateInfowindowImage() {
+    if (currentInfowindow) {
+        let imageElement = currentInfowindow.getContent().querySelector('.infowindow-image');
+        imageElement.src = escapeHTML(currentImageUrls[currentImageIndex]);
+    }
+}
+
 function loadGoogleMapsScript() {
     const script = document.createElement('script');
     script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCAK_oC-2iPESygmTO20tMTBJ5Eyu5_3Rw&libraries=places&callback=onGoogleMapsScriptLoad';
@@ -47,7 +71,6 @@ function processCSVData(csvData) {
     csvData.split('\n').slice(1).forEach(line => {
         const columns = line.split(',');
 
-        // Assuming columns order: name, latitude, longitude, popup_header, popupimage_url, description, icon_url, category, category2, category3
         let data = {
             name: columns[0],
             lat: parseFloat(columns[1]), 
@@ -56,7 +79,6 @@ function processCSVData(csvData) {
             popupimage_url: columns[4],
             description: columns[5],
             icon_url: columns[6],
-            // Splitting categories by '|' if they exist
             category: columns[7] ? columns[7].split('|') : [], 
             category2: columns[8] ? columns[8].split('|') : [],
             category3: columns[9] ? columns[9].split('|') : []
@@ -67,7 +89,6 @@ function processCSVData(csvData) {
         }
     });
 }
-
 
 function attachCategoryButtonsEventListeners() {
     document.querySelectorAll('button[data-category]').forEach(button => {
@@ -81,7 +102,7 @@ function handleCategoryButtonClick(button) {
     let categoryType = button.getAttribute('data-category');
     if (!categoryType) {
         console.error('Button does not have a data-category attribute', button);
-        return; // Exit the function if categoryType is null or undefined.
+        return;
     }
 
     let categoryValues;
@@ -91,7 +112,7 @@ function handleCategoryButtonClick(button) {
         categoryValues = [button.getAttribute('data-value')];
     } else {
         console.error('Button does not have data-values or data-value attributes', button);
-        return; // Exit the function if neither attribute is present.
+        return;
     }
 
     button.classList.toggle('active');
@@ -105,24 +126,6 @@ function handleCategoryButtonClick(button) {
     applyFilters();
 }
 
-function updateComplexFilters(categoryValue, isActive) {
-    let index = activeFilters.complex.indexOf(categoryValue);
-    if (index > -1 && !isActive) {
-        activeFilters.complex.splice(index, 1);
-    } else if (isActive && index === -1) {
-        activeFilters.complex.push(categoryValue);
-    }
-}
-
-function updateActiveFilters(categoryType, categoryValue, isActive) {
-    let index = activeFilters[categoryType].indexOf(categoryValue);
-    if (index > -1 && !isActive) {
-        activeFilters[categoryType].splice(index, 1);
-    } else if (isActive && index === -1) {
-        activeFilters[categoryType].push(categoryValue);
-    }
-}
-
 function initKMLLayers() {
     kmlUrls.forEach((url, index) => {
         kmlLayers[index] = new google.maps.KmlLayer({ url: url, map: null });
@@ -131,15 +134,13 @@ function initKMLLayers() {
 
 function applyFilters() {
     markers.forEach(marker => {
-        let isComplexVisible = activeFilters.complex.length === 0; // Default to true if no complex filters are active.
-        let isCategory2Visible = activeFilters.category2.length === 0; // Default to true if no category2 filters are active.
+        let isComplexVisible = activeFilters.complex.length === 0; 
+        let isCategory2Visible = activeFilters.category2.length === 0; 
 
-        // Check complex category
         if (activeFilters.complex.length > 0 && marker.category) {
             isComplexVisible = activeFilters.complex.some(value => marker.category.includes(value));
         }
 
-        // Check category2
         if (activeFilters.category2.length > 0 && marker.category2) {
             isCategory2Visible = activeFilters.category2.some(value => marker.category2.includes(value));
         }
@@ -177,26 +178,6 @@ function createMarker(data) {
     markers.push(marker);
 
     let imageUrls = data.popupimage_url.split('|');
-    let currentImageIndex = 0;
-
-    function updateInfowindowImage() {
-        let imageElement = infowindow.getContent().querySelector('.infowindow-image');
-        imageElement.src = escapeHTML(imageUrls[currentImageIndex]);
-    }
-
-    window.onLeftArrowClick = function() {
-        if (currentImageIndex > 0) {
-            currentImageIndex--;
-            updateInfowindowImage();
-        }
-    };
-
-    window.onRightArrowClick = function() {
-        if (currentImageIndex < imageUrls.length - 1) {
-            currentImageIndex++;
-            updateInfowindowImage();
-        }
-    };
 
     let infowindowContent = `
 <div style="width:250px; word-wrap:break-word;">
@@ -205,9 +186,9 @@ function createMarker(data) {
         <a href="#" class="copy-address-link" style="font-size:14px; font-family:'Gill Sans MT', Arial; margin-left:16px;">COPY ADDRESS</a>
     </div>
     <div style="position: relative;">
-        <img class="infowindow-image" src="${escapeHTML(imageUrls[currentImageIndex])}" style="width:100%; height:auto; margin-bottom:8px;">
-        <button onclick="window.onLeftArrowClick()" style="position: absolute; left: 0; top: 50%;">&#9664;</button>
-        <button onclick="window.onRightArrowClick()" style="position: absolute; right: 0; top: 50%;">&#9654;</button>
+        <img class="infowindow-image" src="${escapeHTML(imageUrls[0])}" style="width:100%; height:auto; margin-bottom:8px;">
+        <button onclick="onLeftArrowClick()" style="position: absolute; left: 0; top: 50%;">&#9664;</button>
+        <button onclick="onRightArrowClick()" style="position: absolute; right: 0; top: 50%;">&#9654;</button>
     </div>
     <div style="font-size:16px; color:black; font-family:'Gill Sans MT', Arial;">${escapeHTML(data.description)}</div>
     <a href="#" onclick="onGetDirectionsClick({lat:${data.lat},lng:${data.lng}},'${escapeHTML(data.popup_header)}')">Get Directions</a>
@@ -216,9 +197,13 @@ function createMarker(data) {
 
     let infowindow = new google.maps.InfoWindow({ content: infowindowContent });
     marker.addListener('click', () => {
+        currentImageUrls = imageUrls;
+        currentImageIndex = 0;
+
         if (currentInfowindow) currentInfowindow.close();
         currentInfowindow = infowindow;
         infowindow.open(map, marker);
+        updateInfowindowImage();
 
         google.maps.event.addListenerOnce(infowindow, 'domready', () => {
             document.querySelector('.copy-address-link').addEventListener('click', function(event) {
@@ -228,9 +213,6 @@ function createMarker(data) {
         });
     });
 }
-
-window.onLeftArrowClick = onLeftArrowClick;
-window.onRightArrowClick = onRightArrowClick;
 
 function escapeHTML(str) {
     return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
