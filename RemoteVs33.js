@@ -32,22 +32,7 @@ function refreshInfowindowContent() {
         currentInfowindow.setContent(content);
     }
 }
-
-
-function loadGoogleMapsScript() {
-    const script = document.createElement('script');
-    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCAK_oC-2iPESygmTO20tMTBJ5Eyu5_3Rw&libraries=places&callback=onGoogleMapsScriptLoad';
-    script.async = true;
-    script.defer = true;
-    document.head.appendChild(script);
-}
-
-function onGoogleMapsScriptLoad() {
-    initMap();
-    initKMLLayers();
-}
-
-loadGoogleMapsScript();
+document.addEventListener('DOMContentLoaded', function() {
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), { center: { lat: -34.58, lng: -58.42 }, zoom: 13, mapTypeControl: false });
@@ -60,6 +45,35 @@ function initMap() {
 
     attachCategoryButtonsEventListeners();
 }
+function initKMLLayers() {
+    kmlUrls.forEach((url, index) => {
+        kmlLayers[index] = new google.maps.KmlLayer({ url: url, map: null });
+    });
+}
+
+function attachCategoryButtonsEventListeners() {
+    document.querySelectorAll('button[data-category]').forEach(button => {
+        button.addEventListener('click', function() {
+            handleCategoryButtonClick(this);
+        });
+    });
+}
+
+function loadGoogleMapsScript() {
+    const script = document.createElement('script');
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCAK_oC-2iPESygmTO20tMTBJ5Eyu5_3Rw&libraries=places&callback=onGoogleMapsScriptLoad';
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+}
+});
+function onGoogleMapsScriptLoad() {
+    initMap();
+    initKMLLayers();
+}
+
+loadGoogleMapsScript();
+
 
 function fetchMarkersData() {
     fetch('https://raw.githubusercontent.com/checomoandas/noblenomad/main/BsAsPins.csv')
@@ -91,14 +105,6 @@ function processCSVData(csvData) {
     });
 }
 
-function attachCategoryButtonsEventListeners() {
-    document.querySelectorAll('button[data-category]').forEach(button => {
-        button.addEventListener('click', function() {
-            handleCategoryButtonClick(this);
-        });
-    });
-}
-
 function handleCategoryButtonClick(button) {
     let categoryType = button.getAttribute('data-category');
     if (!categoryType) {
@@ -127,11 +133,6 @@ function handleCategoryButtonClick(button) {
     applyFilters();
 }
 
-function initKMLLayers() {
-    kmlUrls.forEach((url, index) => {
-        kmlLayers[index] = new google.maps.KmlLayer({ url: url, map: null });
-    });
-}
 
 function applyFilters() {
     markers.forEach(marker => {
@@ -221,8 +222,8 @@ function createInfowindowContent(imageUrl) {
 
 function escapeHTML(str) {
     if (typeof str !== 'string') {
-        console.error("Invalid input for escapeHTML: ", str);
-        return ""; // Return an empty string or handle the error as needed
+        console.error('Invalid input for escapeHTML:', str);
+        return ''; // or convert str to string if appropriate
     }
     return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
 }
