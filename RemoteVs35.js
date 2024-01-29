@@ -56,7 +56,8 @@ function createInfowindowContent(imageUrl) {
 function escapeHTML(str) {
     if (typeof str !== 'string') {
         console.error('Invalid input for escapeHTML:', str);
-        return ''; // or convert str to string if appropriate
+        // Convert non-string input to a string to prevent errors
+        str = String(str);
     }
     return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
 }
