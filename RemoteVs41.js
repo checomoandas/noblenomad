@@ -222,15 +222,17 @@ marker.addListener('click', () => {
     currentInfowindow = infowindow;
     infowindow.open(map, marker);
 
-    google.maps.event.addListenerOnce(infowindow, 'domready', () => {
-            document.querySelector('.copy-address-link').addEventListener('click', function(event) {
-                event.preventDefault();
-                copyToClipboard(data.name);
-            });
-         } else {
+google.maps.event.addListenerOnce(infowindow, 'domready', () => {
+    let copyLink = document.querySelector('.copy-address-link');
+    if (copyLink) {
+        copyLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            copyToClipboard(data.name);
+        });
+    } else {
         console.error('Element with class .copy-address-link not found');
     }
-    });
+});
 }
 
 
