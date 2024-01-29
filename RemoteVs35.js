@@ -99,7 +99,6 @@ function attachCategoryButtonsEventListeners() {
     });
 }
 
-});
 function onGoogleMapsScriptLoad() {
     initMap();
     initKMLLayers();
