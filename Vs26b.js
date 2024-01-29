@@ -228,9 +228,15 @@ function changeImage(marker, direction) {
         let imageIndex = data.currentImageIndex || 0;
         if (direction === 'next') {
             imageIndex = (imageIndex + 1) % data.images.length;
-        
-}
+        } else {
+            imageIndex = (imageIndex - 1 + data.images.length) % data.images.length;
+        }
+        data.currentImageIndex = imageIndex;
+        const infowindowContent = createInfowindowContent(data);
+        data.infowindow.setContent(infowindowContent);
     }
+}
+
 
 function escapeHTML(str) {
     return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
