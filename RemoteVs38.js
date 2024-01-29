@@ -33,25 +33,25 @@ function refreshInfowindowContent() {
     }
 }
 
-function createInfowindowContent(imageUrl) {
-    // Check if imageUrl is defined
-    if (!imageUrl) {
-        console.error("ImageUrl is undefined in createInfowindowContent");
-        return ""; // Return an empty string or some default content
+function createInfowindowContent(data) {
+    if (!data || !data.popupimage_url) {
+        console.error("Data or imageUrl is undefined in createInfowindowContent");
+        return "";
     }
+
+    let imageUrl = escapeHTML(data.popupimage_url.split('|')[currentImageIndex]);
 
     return `
         <div style="width:250px; word-wrap:break-word;">
-            <!-- Other content here -->
             <div style="position: relative;">
-                <img class="infowindow-image" src="${escapeHTML(imageUrl)}" style="width:100%; height:auto; margin-bottom:8px;">
+                <img class="infowindow-image" src="${imageUrl}" style="width:100%; height:auto; margin-bottom:8px;">
                 <button onclick="onLeftArrowClick()" style="position: absolute; left: 0; top: 50%;">&#9664;</button>
                 <button onclick="onRightArrowClick()" style="position: absolute; right: 0; top: 50%;">&#9654;</button>
             </div>
-            <!-- You can add more content here if needed, like description or header -->
         </div>
     `;
 }
+
 
 function escapeHTML(str) {
     if (typeof str !== 'string') {
@@ -63,11 +63,13 @@ function escapeHTML(str) {
 }
 
 function loadGoogleMapsScript() {
-    const script = document.createElement('script');
-    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCAK_oC-2iPESygmTO20tMTBJ5Eyu5_3Rw&libraries=places&callback=onGoogleMapsScriptLoad';
-    script.async = true;
-    script.defer = true;
-    document.head.appendChild(script);
+    if (!window.google || !window.google.maps) {
+        const script = document.createElement('script');
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCAK_oC-2iPESygmTO20tMTBJ5Eyu5_3Rw&libraries=places&callback=onGoogleMapsScriptLoad';
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
