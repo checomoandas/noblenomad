@@ -47,29 +47,21 @@ function processCSVData(csvData) {
     csvData.split('\n').slice(1).forEach(line => {
         const columns = line.split(',');
 
-        
-let id = 0;
+        let id = 0;
 
-let data = {
-    // Ensure this is correctly parsing the images
-    images: columns[4] ? columns[4].split('|') : [],
-    currentImageIndex: 0,
-    // ... other properties ...
-
-    id: id++, // Assign a unique id to each marker data
-    currentImageIndex: 0, // Initialize current image index
-    // ... other properties ...
-
+        let data = {
+            id: id++, // Assign a unique id to each marker data
             name: columns[0],
             lat: parseFloat(columns[1]), 
             lng: parseFloat(columns[2]),
             popup_header: columns[3],
-            images: columns[4].split('|'), // Split the images
+            images: columns[4] ? columns[4].split('|') : [], // Correctly handle undefined or empty column
             description: columns[5],
             icon_url: columns[6],
             category: columns[7] ? columns[7].split('|') : [], 
             category2: columns[8] ? columns[8].split('|') : [],
-            category3: columns[9] ? columns[9].split('|') : []
+            category3: columns[9] ? columns[9].split('|') : [],
+            currentImageIndex: 0 // Initialize current image index
         };
 
         if (!isNaN(data.lat) && !isNaN(data.lng)) {
