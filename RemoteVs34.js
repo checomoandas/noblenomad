@@ -32,7 +32,47 @@ function refreshInfowindowContent() {
         currentInfowindow.setContent(content);
     }
 }
+
+function createInfowindowContent(imageUrl) {
+    // Check if imageUrl is defined
+    if (!imageUrl) {
+        console.error("ImageUrl is undefined in createInfowindowContent");
+        return ""; // Return an empty string or some default content
+    }
+
+    return `
+        <div style="width:250px; word-wrap:break-word;">
+            <!-- Other content here -->
+            <div style="position: relative;">
+                <img class="infowindow-image" src="${escapeHTML(imageUrl)}" style="width:100%; height:auto; margin-bottom:8px;">
+                <button onclick="onLeftArrowClick()" style="position: absolute; left: 0; top: 50%;">&#9664;</button>
+                <button onclick="onRightArrowClick()" style="position: absolute; right: 0; top: 50%;">&#9654;</button>
+            </div>
+            <!-- You can add more content here if needed, like description or header -->
+        </div>
+    `;
+}
+
+function escapeHTML(str) {
+    if (typeof str !== 'string') {
+        console.error('Invalid input for escapeHTML:', str);
+        return ''; // or convert str to string if appropriate
+    }
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+}
+
+function loadGoogleMapsScript() {
+    const script = document.createElement('script');
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCAK_oC-2iPESygmTO20tMTBJ5Eyu5_3Rw&libraries=places&callback=onGoogleMapsScriptLoad';
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Call loadGoogleMapsScript when the DOM is fully loaded
+    loadGoogleMapsScript();
+});
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), { center: { lat: -34.58, lng: -58.42 }, zoom: 13, mapTypeControl: false });
@@ -59,13 +99,6 @@ function attachCategoryButtonsEventListeners() {
     });
 }
 
-function loadGoogleMapsScript() {
-    const script = document.createElement('script');
-    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCAK_oC-2iPESygmTO20tMTBJ5Eyu5_3Rw&libraries=places&callback=onGoogleMapsScriptLoad';
-    script.async = true;
-    script.defer = true;
-    document.head.appendChild(script);
-}
 });
 function onGoogleMapsScriptLoad() {
     initMap();
@@ -197,35 +230,6 @@ marker.addListener('click', () => {
             });
         });
     });
-}
-
-function createInfowindowContent(imageUrl) {
-    // Check if imageUrl is defined
-    if (!imageUrl) {
-        console.error("ImageUrl is undefined in createInfowindowContent");
-        return ""; // Return an empty string or some default content
-    }
-
-    return `
-        <div style="width:250px; word-wrap:break-word;">
-            <!-- Other content here -->
-            <div style="position: relative;">
-                <img class="infowindow-image" src="${escapeHTML(imageUrl)}" style="width:100%; height:auto; margin-bottom:8px;">
-                <button onclick="onLeftArrowClick()" style="position: absolute; left: 0; top: 50%;">&#9664;</button>
-                <button onclick="onRightArrowClick()" style="position: absolute; right: 0; top: 50%;">&#9654;</button>
-            </div>
-            <!-- You can add more content here if needed, like description or header -->
-        </div>
-    `;
-}
-
-
-function escapeHTML(str) {
-    if (typeof str !== 'string') {
-        console.error('Invalid input for escapeHTML:', str);
-        return ''; // or convert str to string if appropriate
-    }
-    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
 }
 
 
