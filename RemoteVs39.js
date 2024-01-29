@@ -158,7 +158,7 @@ function handleCategoryButtonClick(button) {
 
     if (button.classList.contains('active')) {
         activeFilters[categoryType] = [...new Set([...activeFilters[categoryType], ...categoryValues])];
-    } else {
+     else {
         activeFilters[categoryType] = activeFilters[categoryType].filter(val => !categoryValues.includes(val));
     }
 
