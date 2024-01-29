@@ -105,9 +105,6 @@ function onGoogleMapsScriptLoad() {
     initKMLLayers();
 }
 
-loadGoogleMapsScript();
-
-
 function fetchMarkersData() {
     fetch('https://raw.githubusercontent.com/checomoandas/noblenomad/main/BsAsPins.csv')
         .then(response => response.text())
