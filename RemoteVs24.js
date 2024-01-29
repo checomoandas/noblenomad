@@ -47,16 +47,14 @@ function processCSVData(csvData) {
     csvData.split('\n').slice(1).forEach(line => {
         const columns = line.split(',');
 
-        // Assuming columns order: name, latitude, longitude, popup_header, popupimage_url, description, icon_url, category, category2, category3
         let data = {
             name: columns[0],
             lat: parseFloat(columns[1]), 
             lng: parseFloat(columns[2]),
             popup_header: columns[3],
-            popupimage_url: columns[4],
+            images: columns[4].split('|'), // Split the images
             description: columns[5],
             icon_url: columns[6],
-            // Splitting categories by '|' if they exist
             category: columns[7] ? columns[7].split('|') : [], 
             category2: columns[8] ? columns[8].split('|') : [],
             category3: columns[9] ? columns[9].split('|') : []
