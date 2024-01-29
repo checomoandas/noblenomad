@@ -204,14 +204,13 @@ function createInfowindowContent(data) {
     </div>
     <img src="${escapeHTML(data.images[data.currentImageIndex])}" style="width:100%; height:auto; margin-bottom:8px;">
     <div>
-        <button id="prev-img-${data.name}">Prev</button>
-        <button id="next-img-${data.name}">Next</button>
+        <button onclick="changeImage(marker, 'prev')">Prev</button>
+        <button onclick="changeImage(marker, 'next')">Next</button>
     </div>
     <div style="font-size:16px; color:black; font-family:'Gill Sans MT', Arial;">${escapeHTML(data.description)}</div>
 </div>
 `;
 }
-
 
 function changeImage(marker, direction) {
     let data = marker;
