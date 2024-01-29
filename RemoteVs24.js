@@ -174,31 +174,51 @@ function createMarker(data) {
     marker.category3 = data.category3;
     markers.push(marker);
 
-    let infowindowContent = `
-<div style="width:250px; word-wrap:break-word;">
-    <div style="font-size:20px; font-weight:bold; color:black; font-family:'Gill Sans MT', Arial; margin-bottom:8px;">
-        ${escapeHTML(data.popup_header)}
-        <a href="#" class="copy-address-link" style="font-size:14px; font-family:'Gill Sans MT', Arial; margin-left:16px;">COPY ADDRESS</a>
-    </div>
-    <img src="${escapeHTML(data.popupimage_url)}" style="width:100%; height:auto; margin-bottom:8px;">
-    <div style="font-size:16px; color:black; font-family:'Gill Sans MT', Arial;">${escapeHTML(data.description)}</div>
-    <a href="#" onclick="onGetDirectionsClick({lat:${data.lat},lng:${data.lng}},'${escapeHTML(data.popup_header)}')">Get Directions</a>
-</div>
-`;
+    data.currentImageIndex = 0; // Initialize the image index
 
+    let infowindowContent = createInfowindowContent(data);
     let infowindow = new google.maps.InfoWindow({ content: infowindowContent });
+    marker.infowindow = infowindow;
+
     marker.addListener('click', () => {
         if (currentInfowindow) currentInfowindow.close();
         currentInfowindow = infowindow;
         infowindow.open(map, marker);
 
         google.maps.event.addListenerOnce(infowindow, 'domready', () => {
-            document.querySelector('.copy-address-link').addEventListener('click', function(event) {
-                event.preventDefault();
-                copyToClipboard(data.name);
-            });
+            document.getElementById(`prev-img-${data.name}`).addEventListener('click', () => changeImage(marker, 'prev'));
+            document.getElementById(`next-img-${data.name}`).addEventListener('click', () => changeImage(marker, 'next'));
         });
     });
+}
+
+function createInfowindowContent(data) {
+    return `
+<div style="width:250px; word-wrap:break-word;">
+    <div style="font-size:20px; font-weight:bold; color:black; font-family:'Gill Sans MT', Arial; margin-bottom:8px;">
+        ${escapeHTML(data.popup_header)}
+    </div>
+    <img src="${escapeHTML(data.images[data.currentImageIndex])}" style="width:100%; height:auto; margin-bottom:8px;">
+    <div>
+        <button id="prev-img-${data.name}">Prev</button>
+        <button id="next-img-${data.name}">Next</button>
+    </div>
+    <div style="font-size:16px; color:black; font-family:'Gill Sans MT', Arial;">${escapeHTML(data.description)}</div>
+</div>
+`;
+}
+
+function changeImage(marker, direction) {
+    let data = marker;
+    let imageIndex = data.currentImageIndex || 0;
+    if (direction === 'next') {
+        imageIndex = (imageIndex + 1) % data.images.length;
+    } else {
+        imageIndex = (imageIndex - 1 + data.images.length) % data.images.length;
+    }
+    data.currentImageIndex = imageIndex;
+    const infowindowContent = createInfowindowContent(data);
+    data.infowindow.setContent(infowindowContent);
 }
 
 function escapeHTML(str) {
