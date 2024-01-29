@@ -1,5 +1,5 @@
 function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), { center: { lat: -34.58, lng: -58.42 }
+    map = new google.maps.Map(document.getElementById('map'), { center: { lat: -34.58, lng: -58.42 }})}
 function initKMLLayers() {
     kmlUrls.forEach((url, index) => {
         kmlLayers[index] = new google.maps.KmlLayer({ url: url, map: null }
