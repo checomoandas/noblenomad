@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Google Map</title>
+    <style>
+        #map { height: 480px; width: 640px; float: left; }
+        #directionsPanel {
+            width: 200px;
+            height: 480px;
+            float: right;
+            padding: 10px;
+            background-color: white;
+            overflow: auto;
+            display: none;
+        }
+        .small-font { font-size: 0.8em; }
+        .extra-small-font { font-size: 0.7em; }
+        button {
+            background-color: #FFF;
+            color: black;
+            font-family: 'Gill Sans MT', sans-serif;
+            margin: 2px;
+        }
+        button.active {
+            background-color: #000000;
+            color: white;
+        }
+        .button-container {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<div id="directionsPanel">
+    <b>Start:</b>
+    <input type="text" id="startLocation" placeholder="Enter start location">
+    <b>End: <span id="endLocationName" class="small-font"></span><a href="#" onclick="copyAddress()" class="extra-small-font">Copy Address</a></b>
+    <input type="text" id="endLocation" readonly>
+    <b>Mode of Travel:</b>
+    <select id="travelMode">
+        <option value="DRIVING">Driving</option>
+        <option value="WALKING">Walking</option>
+        <option value="BICYCLING">Bicycling</option>
+        <option value="TRANSIT">Transit</option>
+    </select>
+    <button onclick="calculateAndDisplayRoute()">GET DIRECTIONS</button>
+    <div id="routeDetails"></div>
+</div>
+<div class="button-container">
+   <button data-category="complex" data-values="event">EVENT</button>
+  <button data-category="complex" data-values="social">MINGLE</button>
+   <button data-category="complex" data-values="market">MARKET</button>
+   <button data-category="complex" data-values="gym">GYM/REC</button>
+   <button data-category="complex" data-values="coworking">CO-WORK</button>
+   <button data-category="complex" data-values="healthy">HEALTHY FOOD</button> <br>
+   <button data-category="category2" data-value="mon">MON</button>
+    <button data-category="category2" data-value="tue">TUE</button>
+    <button data-category="category2" data-value="wed">WED</button>
+    <button data-category="category2" data-value="thu">THU</button>
+    <button data-category="category2" data-value="fri">FRI</button>
+    <button data-category="category2" data-value="sat">SAT</button>
+    <button data-category="category2" data-value="sun">SUN</button><br>
+    <button id="kml1Button" onclick="toggleKMLLayer(0)">Tier 1</button>
+    <button id="kml2Button" onclick="toggleKMLLayer(1)">Tier 2</button>
+    <button id="kml3Button" onclick="toggleKMLLayer(2)">Tier 3</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/checomoandas/noblenomad@main/Vs27a.js"></script>
+
+
+</body>
+</html>
