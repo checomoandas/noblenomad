@@ -156,11 +156,11 @@ function handleCategoryButtonClick(button) {
 
     button.classList.toggle('active');
 
-    if (button.classList.contains('active')) {
-        activeFilters[categoryType] = [...new Set([...activeFilters[categoryType], ...categoryValues])];
-     else {
-        activeFilters[categoryType] = activeFilters[categoryType].filter(val => !categoryValues.includes(val));
-    }
+  if (button.classList.contains('active')) {
+    activeFilters[categoryType] = [...new Set([...activeFilters[categoryType], ...categoryValues])];
+} else {
+    activeFilters[categoryType] = activeFilters[categoryType].filter(val => !categoryValues.includes(val));
+}
 
     applyFilters();
 }
