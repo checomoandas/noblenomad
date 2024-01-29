@@ -227,7 +227,9 @@ marker.addListener('click', () => {
                 event.preventDefault();
                 copyToClipboard(data.name);
             });
-        });
+         } else {
+        console.error('Element with class .copy-address-link not found');
+    }
     });
 }
 
