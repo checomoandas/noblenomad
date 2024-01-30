@@ -10,7 +10,6 @@ function safeGetContent(infowindow) {
   return ''; // Return an empty string if the content is not available
 }
 
-
 let currentInfowindow = null;
 let map, directionsService, directionsRenderer;
 let markers = [];
