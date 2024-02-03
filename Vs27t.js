@@ -270,7 +270,7 @@ function detectAndFetchDataForActiveMarkers() {
 
 function fetchAndProcessCSVForActiveMarkers(activeMarkers) {
     // Use the Fetch API to get the CSV data from a given URL
-    fetch('path/to/your/data.csv')
+    fetch('https://raw.githubusercontent.com/checomoandas/noblenomad/main/BsAsPins.csv')
     .then(response => response.text())
     .then(csvData => {
         const processedData = processCSVData(csvData);
