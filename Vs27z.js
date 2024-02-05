@@ -380,7 +380,7 @@ function updateSidebar(data) {
 }
 
 // Assuming the CSV URL and the existing processCSVData function
-csvUrl = 'YOUR_CSV_FILE_URL_HERE';
+csvUrl = 'https://raw.githubusercontent.com/checomoandas/noblenomad/main/BsAsPins.csv';
 
 function loadAndProcessCsvData(url) {
     fetch(url)
