@@ -325,7 +325,7 @@ function updateSidebarWithMarkerData(processedData) {
 
 
 // Assuming the CSV file is hosted at a reachable URL
-let csvUrl = 'https://raw.githubusercontent.com/checomoandas/noblenomad/main/BsAsPins.csv';
+let csvUrl = 'YOUR_CSV_FILE_URL_HERE';
 
 // Function to fetch and parse CSV data
 function loadCsvData(url) {
@@ -380,7 +380,7 @@ function updateSidebar(data) {
 }
 
 // Assuming the CSV URL and the existing processCSVData function
-csvUrl = 'https://raw.githubusercontent.com/checomoandas/noblenomad/main/BsAsPins.csv';
+csvUrl = 'YOUR_CSV_FILE_URL_HERE';
 
 function loadAndProcessCsvData(url) {
     fetch(url)
