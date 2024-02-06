@@ -222,7 +222,8 @@ function updateSidebar() {
             `; // Customize this content structure as needed.
             sidebar.appendChild(infoDiv);
         }
-
+   });
+}
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
         alert('Address copied to clipboard!');
