@@ -205,7 +205,7 @@ function createMarker(data) {
 }
 
 function updateSidebar() {
-    const sidebar = document.getElementById('sidebar'); // Ensure this element exists in your HTML
+    var sidebar = document.getElementById('sidebar'); // Ensure this element exists in your HTML
     sidebar.innerHTML = ''; // Clear existing content
 
     markers.forEach(marker => {
@@ -213,7 +213,7 @@ function updateSidebar() {
             // Assuming marker.title exists, use it to populate the sidebar
             const infoDiv = document.createElement('div');
             infoDiv.className = 'marker-info';
-            infoDiv.innerHTML = `<strong>${marker.title}</strong>`; // Example content, customize as needed
+            infoDiv.innerHTML = infowindowContent; // Example content, customize as needed
             sidebar.appendChild(infoDiv);
         }
     });
