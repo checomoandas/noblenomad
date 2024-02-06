@@ -164,27 +164,45 @@ function toggleKMLLayer(index) {
 
 function createMarker(data) {
     let markerOptions = {
-        position: new google.maps.LatLng(data.lat, data.lng),
+        position: { lat: data.lat, lng: data.lng },
         map: map,
         title: data.name
     };
-    if (data.icon_url) {
-        markerOptions.icon = {
-            url: data.icon_url,
-            scaledSize: new google.maps.Size(32, 32) // Assuming a default size for icons
-        };
+    if (data.icon_url && data.icon_url.startsWith('http')) {
+        markerOptions.icon = { url: data.icon_url, scaledSize: new google.maps.Size(32, 32) };
     }
     let marker = new google.maps.Marker(markerOptions);
-    markers.push(marker); // Add the marker to the global markers array
-    // Optionally, here you could also bind an infowindow to the marker if needed
+    marker.category = data.category;
+    marker.category2 = data.category2;
+    marker.category3 = data.category3;
+    markers.push(marker);
+
+    let infowindowContent = `
+<div style="width:250px; word-wrap:break-word;">
+    <div style="font-size:20px; font-weight:bold; color:black; font-family:'Gill Sans MT', Arial; margin-bottom:8px;">
+        ${escapeHTML(data.popup_header)}
+        <a href="#" class="copy-address-link" style="font-size:14px; font-family:'Gill Sans MT', Arial; margin-left:16px;">COPY ADDRESS</a>
+    </div>
+    <img src="${escapeHTML(data.popupimage_url)}" style="width:100%; height:auto; margin-bottom:8px;">
+    <div style="font-size:16px; color:black; font-family:'Gill Sans MT', Arial;">${escapeHTML(data.description)}</div>
+    <a href="#" onclick="onGetDirectionsClick({lat:${data.lat},lng:${data.lng}},'${escapeHTML(data.popup_header)}')">Get Directions</a>
+</div>
+`;
+
+    let infowindow = new google.maps.InfoWindow({ content: infowindowContent });
+    marker.addListener('click', () => {
+        if (currentInfowindow) currentInfowindow.close();
+        currentInfowindow = infowindow;
+        infowindow.open(map, marker);
+
+        google.maps.event.addListenerOnce(infowindow, 'domready', () => {
+            document.querySelector('.copy-address-link').addEventListener('click', function(event) {
+                event.preventDefault();
+                copyToClipboard(data.name);
+            });
+        });
+    });
 }
-};
-
-
-// Assuming previous function or object was not properly closed
-};
-
-
 
 function updateSidebar() {
     const sidebar = document.getElementById('sidebar'); // Ensure this element exists in your HTML
@@ -198,5 +216,62 @@ function updateSidebar() {
             infoDiv.innerHTML = `<strong>${marker.title}</strong>`; // Example content, customize as needed
             sidebar.appendChild(infoDiv);
         }
+    });
+}
+
+function escapeHTML(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+}
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        alert('Address copied to clipboard!');
+    }).catch(err => {
+        console.error('Could not copy text: ', err);
+    });
+}
+
+function calculateAndDisplayRoute() {
+    let start = document.getElementById('startLocation').value;
+    let end = document.getElementById('endLocation').value;
+    let travelMode = document.getElementById('travelMode').value;
+    if (!start || !end) {
+        alert('Please enter both start and end locations.');
+        return;
+    }
+    directionsService.route({
+        origin: start,
+        destination: end,
+        travelMode: travelMode
+    }, function(response, status) {
+        if (status === 'OK') {
+            directionsRenderer.setDirections(response);
+            displayRouteDetails(response);
+            if (currentInfowindow) currentInfowindow.close();
+        } else {
+            window.alert('Directions request failed due to ' + status);
+        }
+    });
+}
+
+function displayRouteDetails(response) {
+    const route = response.routes[0];
+    let duration = route.legs[0].duration.text;
+    let distance = route.legs[0].distance.text;
+    document.getElementById('routeDetails').innerHTML = `Distance: ${distance}, Duration: ${duration}`;
+}
+
+function onGetDirectionsClick(endLocation, endLocationName) {
+    document.getElementById('endLocation').value = `${endLocation.lat}, ${endLocation.lng}`;
+    document.getElementById('endLocationName').textContent = endLocationName;
+    document.getElementById('directionsPanel').style.display = 'block';
+}
+
+function copyAddress() {
+    let endLocation = document.getElementById('endLocation').value;
+    navigator.clipboard.writeText(endLocation).then(() => {
+        alert('Address copied to clipboard!');
+    }).catch(err => {
+        alert('Error in copying text: ', err);
     });
 }
