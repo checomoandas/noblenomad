@@ -205,7 +205,7 @@ function createMarker(data) {
 }
 
 function updateSidebar() {
-    var sidebar = document.getElementById('sidebar'); // Ensure this element exists in your HTML
+    const sidebar = document.getElementById('sidebar'); // Ensure this element exists in your HTML
     sidebar.innerHTML = ''; // Clear existing content
 
     markers.forEach(marker => {
